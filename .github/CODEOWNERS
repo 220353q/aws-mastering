@@ -1,0 +1,6 @@
+# Code Owners for AWS Mastering
+* @220353q
+*.md @220353q
+services/ @220353q
+comparisons/ @220353q
+patterns/ @220353q
