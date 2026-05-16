@@ -37,10 +37,11 @@ Aurora DB cluster
 
 | 混同 | 正しい見方 |
 |---|---|
-| RDS Multi-AZ DB instance | 通常RDSのstandbyは基本的に読み取り先ではない |
+| RDS Multi-AZ DB instance | 従来型Multi-AZのstandbyは基本的に読み取り先ではない。読み取り分散が目的ならRead ReplicaやAurora Replicaを検討する |
+| RDS Multi-AZ DB cluster | RDS側にもクラスタ型構成があるが、Auroraとはストレージ、レプリカ、Global Databaseの設計が異なる |
 | Read Replica | Aurora Replicaはcluster内readerとしてreader endpointと組み合わせる |
 | Redshift | AuroraはOLTP中心。大量分析/DWHはRedshift/Athena |
-| RDS Proxy | Auroraのreader endpointは読み取り分散、RDS Proxyは接続プール |
+| RDS Proxy | Auroraのreader endpointは読み取り分散、RDS Proxyは接続プール。クエリキャッシュや自動read routingではない |
 
 ## Endpointの読み方
 
@@ -59,6 +60,24 @@ DBA / monitoring
 | Reader endpoint | read-only接続の分散 | 書き込みや強いread-after-writeを期待する |
 | Instance endpoint | 特定instanceへの接続 | 本番アプリの通常接続先に固定する |
 | Custom endpoint | reader subset分離 | 何でも自動最適化する魔法ではない |
+
+Reader endpointは読み取りをAurora Replica群へ分散するが、writer直後の最新データを常に即座に読めることを保証するものではない。強いread-after-writeが必要な処理では、writer endpointを使うか、アプリ側で読み取り経路を分ける。
+
+## Global Databaseの読み方
+
+Aurora Global Databaseは、基本的に1つのprimary Regionでwriteし、secondary Regionは低レイテンシreadとDRに使う。リージョン障害時はsecondaryを昇格させて復旧する。DynamoDB Global Tablesのような双方向multi-active writeを簡単に実現するサービスではない。
+
+```text
+Primary Region
+  App writes → Aurora writer
+               └─ storage replication
+                    ↓
+Secondary Region
+  App reads  → Aurora secondary cluster
+  DR event   → promote secondary to primary
+```
+
+write forwardingは存在するが、DynamoDB Global Tablesのような双方向multi-active writeとは別物として扱う。SAP-C02では、Global Databaseを「global read + low RPO DR」として読み、multi-writer要件がある場合は本当にAuroraでよいかを確認する。
 
 ## 試験問題ではどう出るか
 
@@ -93,7 +112,9 @@ Users
 
 - Aurora reader endpointをDWHとして選ぶ。
 - Reader endpointへ更新処理を投げる。
+- Reader endpointで常に強いread-after-writeが得られると考える。
 - Global Databaseだけでアプリの完全なmulti-active書き込みが簡単にできると考える。
+- Aurora Global Databaseのsecondary Regionを通常時のwrite先として扱う。
 - RDS Proxyをread scalingやクエリキャッシュとして選ぶ。
 - KMS暗号化スナップショット共有でKMS key policyを忘れる。
 
