@@ -8,6 +8,7 @@
 - **Amazon SNS**: Pub/Sub、fanout、通知。
 - **Amazon MQ**: 既存ActiveMQ/RabbitMQ移行。
 - **AWS App Mesh**: サービスメッシュ、mTLS、トラフィック制御。
+- **AWS AppSync**: GraphQL API、リアルタイム購読、複数データソース統合。
 
 ## Design Focus
 SAP-C02では、Application Integrationは単独暗記ではなく、**疎結合設計の選択問題**として問われる。
@@ -19,4 +20,5 @@ SAP-C02では、Application Integrationは単独暗記ではなく、**疎結合
 順序・分岐・補償処理 → Step Functions
 既存MQ互換 → Amazon MQ
 API公開 → API Gateway
+GraphQL/リアルタイムAPI → AppSync
 ```

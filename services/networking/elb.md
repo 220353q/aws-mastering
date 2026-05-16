@@ -87,7 +87,7 @@ GWLBはGENEVEプロトコルを使ってアプライアンスと通信する。
 
 ---
 
-## SAP-C02 Focus
+## SAP-C02での読み方
 
 ELB選択問題では、次の順に読む。
 
@@ -110,6 +110,7 @@ ELB選択問題では、次の順に読む。
 
 ## Related
 
+- [Networking Foundations Deep Dive](../../comparisons/networking-foundations-deep-dive.md)
 - [Amazon VPC](vpc.md)
 - [AWS PrivateLink](privatelink.md)
 - [AWS Global Accelerator](global-accelerator.md)
@@ -120,3 +121,10 @@ ELB選択問題では、次の順に読む。
 
 - https://docs.aws.amazon.com/elasticloadbalancing/
 - https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/introduction.html
+
+## このページを読んだあとに戻るべき関連ページ
+
+- [Networking Foundations Deep Dive](../../comparisons/networking-foundations-deep-dive.md)
+- [AWS Gateway Services and Terms](../../comparisons/aws-gateways.md)
+- [Security Group / NACL / Firewall](../../comparisons/network-security-boundaries.md)
+- [AWS PrivateLink](privatelink.md)

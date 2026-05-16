@@ -9,6 +9,7 @@ SAP-C02 Domain 4（Accelerate Workload Migration and Modernization）で重要�
 | 移行対象 | 代表サービス | 判断軸 |
 |---|---|---|
 | サーバー / VM / 物理マシン | [AWS Application Migration Service](mgn.md) | リホスト、継続レプリケーション、短いカットオーバー |
+| サーバーDR | [AWS Elastic Disaster Recovery](elastic-disaster-recovery.md) | 継続レプリケーション、障害時にAWSで起動 |
 | データベースのデータ | [AWS Database Migration Service](dms.md) | 同種/異種、CDC、最小停止時間 |
 | 異種DBのスキーマ | [AWS SCT / DMS Schema Conversion](sct.md) | Oracle→Aurora PostgreSQL などの変換 |
 | ファイル / オブジェクト | [AWS DataSync](datasync.md) | オンライン転送、NFS/SMB/S3/EFS/FSx |
@@ -36,6 +37,7 @@ SAP-C02 Domain 4（Accelerate Workload Migration and Modernization）で重要�
 ## SAP-C02の読み方
 
 - `minimal downtime`, `ongoing replication`, `servers` → MGN。
+- `disaster recovery`, `failover to AWS`, `recovery drill` → AWS Elastic Disaster Recovery。
 - `database migration`, `CDC`, `heterogeneous` → DMS + Schema Conversion。
 - `schema conversion`, `stored procedures`, `Oracle to Aurora PostgreSQL` → SCT / DMS Schema Conversion。
 - `NFS`, `SMB`, `file server`, `S3/EFS/FSx` → DataSync。

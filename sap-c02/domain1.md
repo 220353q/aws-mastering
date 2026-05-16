@@ -27,14 +27,14 @@ Organizations + Control Tower + IAM Identity Center + IAM + KMS + Transit Gatewa
 
 ---
 
-## Week 4 Additions
+## Governance and Cross-Account Design Notes
 
 - Organizations配下でバックアップを標準化する場合、AWS Backup Policy + Cross-Account Backupを検討する。
 - 共有サービスを他アカウントへ公開する場合、VPC Peering/TGWではなくPrivateLinkが最小露出になることがある。
 
 ---
 
-## Week 5 Additions
+## Audit, Baseline Deployment, and Cost Governance Notes
 
 - 監査ログはCloudTrail、設定準拠はConfig、所見集約はSecurity Hubと切り分ける。
 - 複数アカウント/複数リージョンへ標準リソースを配布する場合はCloudFormation StackSetsを検討する。

@@ -80,6 +80,26 @@ Cognito User Pool / SAML / OIDC / Social IdP
 
 ---
 
+## Poolという言葉に惑わされない
+
+`Pool` は「同じ種類のものをまとめて管理する場所」という意味。CognitoのPoolとRDS ProxyのConnection Poolはまったく別物。
+
+| Pool | 管理するもの | 目的 |
+|---|---|---|
+| User Pool | アプリユーザー、パスワード、MFA、属性 | ログイン/JWT発行 |
+| Identity Pool | 認証済み/匿名IDとIAM Roleの対応 | STS一時AWS credentials発行 |
+| Connection Pool | DB接続 | DB接続を再利用して負荷を下げる |
+
+```text
+User Pool = あなたは誰?
+Identity Pool = AWSで何をしてよい?
+Connection Pool = DB接続を使い回す箱
+```
+
+詳細は [Pool Terms](../../glossary/pool-terms.md) を参照。
+
+---
+
 ## Cognito + API Gateway
 
 ```text
@@ -130,7 +150,7 @@ Client
 
 ---
 
-## SAP-C02 Focus
+## SAP-C02での読み方
 
 Cognito問題は、ほぼ必ず **User Pool = 認証 / Identity Pool = AWS一時認証情報** の切り分けで解ける。さらに、IAM Identity Centerとの混同、API Gateway authorizerとの連携、S3直接アップロード時の最小権限が頻出。
 
@@ -138,3 +158,11 @@ Cognito問題は、ほぼ必ず **User Pool = 認証 / Identity Pool = AWS一時
 - What is Amazon Cognito?: https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html
 - User pools: https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools.html
 - Identity pools: https://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html
+
+## このページを読んだあとに戻るべき関連ページ
+
+- [Pool Terms](../../glossary/pool-terms.md)
+- [Access Control and Encryption Deep Dive](../../comparisons/access-control-and-encryption.md)
+- [API Gateway](../integration/apigateway.md)
+- [STS](sts.md)
+- [IAM Identity Center](iam-identity-center.md)

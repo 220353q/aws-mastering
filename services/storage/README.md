@@ -5,7 +5,7 @@
 | サービス | 詳細 | 主な用途 |
 |---|---|---|
 | Amazon S3 | [s3.md](s3.md) | オブジェクトストレージ、データレイク、静的配信、CRR |
-| Amazon EBS | 未作成 | EC2向けブロックストレージ、スナップショット、性能設計 |
+| Amazon EBS | [ebs.md](ebs.md) | EC2向けブロックストレージ、スナップショット、性能設計 |
 | Amazon EFS | [efs.md](efs.md) | Linux/NFS共有ファイル、マルチAZ、コンテナ/Lambda連携 |
 | Amazon FSx | [fsx.md](fsx.md) | Windows SMB、Lustre、ONTAP、OpenZFS |
 | AWS Storage Gateway | [storage-gateway.md](storage-gateway.md) | ハイブリッドストレージ、File/Volume/Tape Gateway |
@@ -13,7 +13,7 @@
 
 ## Tier 2/3
 
-- Amazon S3 Glacier
+- [Amazon S3 Glacier](s3-glacier.md)
 - AWS Snow Family: 詳細は [migration/snow-family.md](../migration/snow-family.md)
 - AWS DataSync: 詳細は [migration/datasync.md](../migration/datasync.md)
 

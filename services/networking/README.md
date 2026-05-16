@@ -19,3 +19,8 @@
 Multi-AZ、multi-region、private connectivity、ハイブリッド接続、グローバル配信を、可用性・セキュリティ・コスト・運用負荷で比較する。
 
 詳しくは [Networking Options Comparison](../../comparisons/networking-options.md) を参照。
+
+## Must-Know Network Distinctions
+
+- [Security Group / NACL / Firewall Decision Guide](../../comparisons/network-security-boundaries.md): SG、NACL、Inbound/Outbound、Deny、Stateful/Stateless。
+- [AWS Gateway Services and Terms](../../comparisons/aws-gateways.md): IGW、NAT GW、TGW、VGW、CGW、DXGW、Gateway Endpoint、GWLB、API Gateway、Storage Gateway。

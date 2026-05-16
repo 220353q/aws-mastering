@@ -6,6 +6,8 @@
 3. Study [comparisons/](./comparisons/) for design trade-offs
 4. Practice [patterns/](./patterns/) for real scenarios
 5. Review [sap-c02/](./sap-c02/) for exam tips and domain guides
+6. Use [architecture-diagrams/](./architecture-diagrams/) and [glossary/](./glossary/) when the scenario depends on topology or non-AWS terms
+7. When stuck, jump to the deep dives: [networking](./comparisons/networking-foundations-deep-dive.md), [RDS/Aurora connections](./comparisons/rds-aurora-connection-deep-dive.md), and [access/encryption](./comparisons/access-control-and-encryption.md)
 
 ## For Practicing Architects
 - Use SERVICES_INDEX.md as daily reference
@@ -13,10 +15,11 @@
 - Use comparisons/ when choosing between similar services
 - Apply Well-Architected guides in reviews
 
-## Recommended Learning Path (2-4 weeks intensive)
-Week 1: Phase 1 (IAM, VPC, EC2, S3, RDS, DynamoDB)
-Week 2: Phase 2 (Lambda, API Gateway, Step Functions, Containers)
-Week 3: Phase 3 (Analytics, ML, Management) + patterns/
-Week 4: Phase 4 (Well-Architected deep dive) + comparisons/ + practice exams
+## Recommended Learning Path
 
-**This repo + hands-on labs + official practice exams = high chance of passing SAP-C02.**
+1. Foundation: IAM, Organizations, VPC, EC2, S3, EBS, RDS, DynamoDB
+2. Application design: Lambda, API Gateway, Step Functions, ECS/EKS/Fargate, EventBridge/SNS/SQS
+3. Data and governance: Analytics, ML, Management, Security, Cost
+4. Architecture practice: architecture diagrams, patterns, comparisons, practice exams
+
+**Goal**: Use this repo as the primary study source, then keep expanding `practice/` until full-length mock coverage is comfortable.

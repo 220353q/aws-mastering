@@ -127,7 +127,7 @@ IAM policy / Resource policy / Endpoint policy
 
 ---
 
-## SAP-C02 Focus
+## SAP-C02での読み方
 
 PrivateLinkは、**「VPC同士をつなぐ」ではなく「サービスをプライベートに利用/公開する」** と覚える。S3/DynamoDBならGateway Endpoint、KMS/ECR/SSM/Secrets Manager等ならInterface Endpoint、サービス公開ならEndpoint Service + NLBを選ぶ。
 
@@ -135,3 +135,11 @@ PrivateLinkは、**「VPC同士をつなぐ」ではなく「サービスをプ�
 - Gateway endpoints: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html
 - Interface endpoints: https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html
 - S3 endpoint types: https://docs.aws.amazon.com/AmazonS3/latest/userguide/privatelink-interface-endpoints.html
+
+## このページを読んだあとに戻るべき関連ページ
+
+- [Networking Foundations Deep Dive](../../comparisons/networking-foundations-deep-dive.md)
+- [AWS Gateway Services and Terms](../../comparisons/aws-gateways.md)
+- [Networking Connectivity Options](../../comparisons/networking-options.md)
+- [Amazon VPC](vpc.md)
+- [Elastic Load Balancing](elb.md)

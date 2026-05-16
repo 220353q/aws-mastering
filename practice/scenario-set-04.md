@@ -62,7 +62,7 @@ D. DataZoneでデータ発見、公開、申請、承認を支援する。
 
 E. S3バケットを全員にRead許可し、列レベル権限は命名規則で運用する。
 
-F. QuickSight/Quick SightだけでETL、Data Catalog、Lake Formation権限、承認ワークフローをすべて代替する。
+F. QuickSightだけでETL、Data Catalog、Lake Formation権限、承認ワークフローをすべて代替する。
 
 G. KMSで暗号化すれば、部門別の列表示制御は不要になる。
 
@@ -83,7 +83,7 @@ S3 Data Lake
    ├─ Glue ETL Jobs
    ├─ Lake Formation: table/column permissions
    ├─ Athena: SQL Query
-   ├─ QuickSight / Quick Sight: BI
+   ├─ QuickSight: BI
    └─ DataZone: discover / request / approve / share
 ```
 
@@ -91,7 +91,7 @@ S3 Data Lake
 
 Eは最小権限を崩す。FはQuickSightの役割を広げすぎ。Gは暗号化と認可の混同。Bも分析要件には必要だが、設問の中心であるETL/権限制御/申請ガバナンスの組み合わせとしてA/C/Dを選ぶ。
 
-関連: [Glue](../services/analytics/glue.md), [Athena](../services/analytics/athena.md), [Lake Formation](../services/analytics/lakeformation.md), [DataZone](../services/analytics/datazone.md), [QuickSight / Quick Sight](../services/analytics/quicksight.md)
+関連: [Glue](../services/analytics/glue.md), [Athena](../services/analytics/athena.md), [Lake Formation](../services/analytics/lakeformation.md), [DataZone](../services/analytics/datazone.md), [QuickSight](../services/analytics/quicksight.md)
 
 ---
 

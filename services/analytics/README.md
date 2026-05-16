@@ -8,13 +8,16 @@
 | AWS Glue | [glue.md](glue.md) | Data Catalog、Crawler、ETL、データ統合 |
 | AWS Lake Formation | [lakeformation.md](lakeformation.md) | データレイク権限、行/列レベル制御 |
 | Amazon Redshift | [redshift.md](redshift.md) | DWH、Spectrum、RA3、分析基盤 |
-| Amazon QuickSight / Quick Sight | [quicksight.md](quicksight.md) | BI、ダッシュボード、埋め込み分析 |
+| Amazon QuickSight | [quicksight.md](quicksight.md) | BI、ダッシュボード、埋め込み分析 |
 | Amazon DataZone | [datazone.md](datazone.md) | データカタログ、発見、共有、ガバナンス |
 | Amazon Kinesis | [kinesis.md](kinesis.md) | ストリーミング取り込み/処理 |
 | Amazon OpenSearch Service | [opensearch.md](opensearch.md) | ログ検索、全文検索、可視化 |
+| Amazon EMR | [emr.md](emr.md) | Spark/Hadoop、大規模分散処理 |
+| Amazon MSK | [msk.md](msk.md) | Kafka互換ストリーミング |
+| Managed Service for Apache Flink | [flink.md](flink.md) | 状態を持つリアルタイムストリーム処理 |
 
 ## Focus
 
-Serverless analyticsは **S3 + Glue Data Catalog + Athena**、権限制御は **Lake Formation**、DWHは **Redshift**、BIは **QuickSight/Quick Sight**、組織横断の発見・共有・ガバナンスは **DataZone** と切り分ける。
+Serverless analyticsは **S3 + Glue Data Catalog + Athena**、権限制御は **Lake Formation**、DWHは **Redshift**、BIは **QuickSight**、組織横断の発見・共有・ガバナンスは **DataZone** と切り分ける。
 
 詳しくは [Analytics / Data Lake Comparison](../../comparisons/analytics-data-lake.md) を参照。

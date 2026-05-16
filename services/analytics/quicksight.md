@@ -1,8 +1,8 @@
-# Amazon QuickSight / Amazon Quick Sight
+# Amazon QuickSight
 
 ## 何をするサービスか
 
-Amazon QuickSight は、AWSのフルマネージドBIサービス。2026年時点のAWSドキュメントではAmazon Quickエコシステム内の **Amazon Quick Sight** として説明されるが、SAP-C02学習では従来名のQuickSightでも理解しておく。
+Amazon QuickSight は、AWSのフルマネージドBIサービス。SAP-C02では、S3/Athena/Glue/Lake Formation/Redshiftなどで整えたデータを、ダッシュボードや埋め込み分析として提供する役割で問われる。
 
 ## 主な用途
 
@@ -30,14 +30,36 @@ Business Users / Embedded App
 
 QuickSightでLake Formationによる権限制御を効かせる場合、QuickSight側のデータソース、ユーザー/グループ、Lake Formation権限、Glue Data Catalog権限の対応関係を確認する。単にCognitoでMFA済みだからLake Formationの行/列制御が自動的に効く、という理解は危険。
 
+```text
+Viewer
+  → QuickSight dashboard
+  → Dataset: SPICE or Direct Query
+  → Athena / Redshift / RDS
+  → Lake Formation / IAM / KMS as needed
+```
+
+判断ポイント:
+- QuickSightはBI表示のサービス。ETLはGlue、DWHはRedshift、データレイク権限はLake Formation。
+- SPICEに取り込んだデータは、更新タイミングと権限変更の反映を考える。
+- Direct Queryでは背後のデータソース権限、実行主体、KMS権限を確認する。
+
 ## よくある誤答
 
 - **QuickSightをETLとして選ぶ**: ETLはGlue。
 - **QuickSightをDWHとして選ぶ**: DWHはRedshift。
 - **QuickSightだけでデータレイク権限が完結すると思う**: Glue/Lake Formation/IAMとの連携が必要。
 
-## SAP-C02 Focus
+## SAP-C02での読み方
 
 - 可視化/BIならQuickSight。
 - 高速表示が必要ならSPICE、常に最新が必要ならDirect Queryを検討。
 - 埋め込みBIではRegistered Embedding、IAM、Cognito、Lake Formation権限のつながりが重要。
+
+## このページを読んだあとに戻るべき関連ページ
+
+- [Access Control and Encryption Deep Dive](../../comparisons/access-control-and-encryption.md)
+- [Analytics / Data Lake Service Selection](../../comparisons/analytics-data-lake.md)
+- [Lake Formation](lakeformation.md)
+- [Athena](athena.md)
+- [Glue](glue.md)
+- [KMS](../security/kms.md)

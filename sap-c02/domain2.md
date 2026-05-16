@@ -28,7 +28,7 @@ Lambda + API Gateway + DynamoDB + Cognito + CloudFront + Route 53 + Step Functio
 
 ---
 
-## Week 4 Additions
+## Global Delivery and Edge Security Design Notes
 
 - グローバル固定IPと高速リージョン切替はGlobal Accelerator、HTTPキャッシュはCloudFront。
 - ALB/NLB/GWLBはレイヤーと用途で選ぶ。パスルーティングはALB、TCP/固定IPはNLB、アプライアンス挿入はGWLB。
@@ -36,9 +36,9 @@ Lambda + API Gateway + DynamoDB + Cognito + CloudFront + Route 53 + Step Functio
 
 ---
 
-## Week 5 Additions
+## Data Platform and Standardization Design Notes
 
-- データレイクはS3 + Glue Data Catalog + Athenaを基本形とし、権限制御はLake Formation、BIはQuickSight/Quick Sight、データ発見・共有はDataZoneと切り分ける。
+- データレイクはS3 + Glue Data Catalog + Athenaを基本形とし、権限制御はLake Formation、BIはQuickSight、データ発見・共有はDataZoneと切り分ける。
 - 新規ソリューションでもCloudFormation/StackSetsを使って、環境の再現性と標準化を設計する。
 
 ---

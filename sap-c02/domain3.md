@@ -27,14 +27,14 @@ Well-Architected Tool + Trusted Advisor + Compute Optimizer + FIS + GuardDuty + 
 
 ---
 
-## Week 4 Additions
+## Operational Control and Secrets Management Notes
 
 - バックアップ統制・監査・クロスアカウント保護はAWS Backupを検討する。
 - Secrets Managerはローテーション、Parameter Storeは設定管理寄り。
 
 ---
 
-## Week 5 Additions
+## Cost, Compliance, and Automated Remediation Notes
 
 - コスト改善はCost Explorerで分析し、Compute OptimizerでRightsizingしてからSavings Plans/RIを検討する。
 - 継続的コンプライアンスはConfig Rules/Conformance Packs、セキュリティ所見集約はSecurity Hub。

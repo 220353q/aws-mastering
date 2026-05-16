@@ -73,6 +73,22 @@ Condition: どの経路・文脈で使えるかの制約
 
 ---
 
+## 暗号化は誰から何を隠すのか
+
+| 仕組み | 守る場所 | 主な目的 |
+|---|---|---|
+| TLS / HTTPS | 通信経路 | ネットワーク上の盗聴・改ざんを防ぐ |
+| SSE-S3 | S3保存時 | S3管理鍵で保存データを暗号化 |
+| SSE-KMS | S3保存時 + KMS制御 | KMS keyで鍵利用を監査/制御する |
+| EBS/RDS encryption | ブロック/DB保存時 | スナップショット含む保存データ保護 |
+| Lake Formation | データレイク権限 | 行/列/テーブル単位で見えるデータを制御 |
+
+**復号** は「暗号化されたデータを読める形に戻すこと」。問題文で「誰が復号できるか」と出たら、KMS key policy、IAM policy、grants、サービス経由条件を確認する。
+
+**重要**: 保存時暗号化はデータ認可の代わりではない。KMSで暗号化しても、Lake Formationの行/列レベル権限やIAM/S3 bucket policyの設計は別に必要。
+
+---
+
 ## クロスアカウントKMS
 
 別アカウントのIAM roleがKMS keyを使うには、通常は両側の許可が必要。
@@ -170,7 +186,7 @@ Multi-Region keys は、同じ key ID と key material を複数リージョン�
 
 ---
 
-## SAP-C02 Focus
+## SAP-C02での読み方
 
 KMSは「暗号化サービス」ではなく、**データアクセス制御の最後の門番** として出題される。S3、RDS、EBS、CloudTrail、DMS、Secrets Manager、クロスアカウント共有の問題では、KMS権限の見落としが典型的な落とし穴になる。
 
@@ -178,3 +194,11 @@ KMSは「暗号化サービス」ではなく、**データアクセス制御の
 - AWS KMS key policies: https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html
 - IAM policies with AWS KMS: https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html
 - Grants in AWS KMS: https://docs.aws.amazon.com/kms/latest/developerguide/grants.html
+
+## このページを読んだあとに戻るべき関連ページ
+
+- [Access Control and Encryption Deep Dive](../../comparisons/access-control-and-encryption.md)
+- [IAM](iam.md)
+- [S3](../storage/s3.md)
+- [RDS / Aurora Connection Deep Dive](../../comparisons/rds-aurora-connection-deep-dive.md)
+- [Lake Formation](../analytics/lakeformation.md)

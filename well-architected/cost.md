@@ -22,7 +22,7 @@
 - Serverless cost optimization
 - Data transfer cost awareness (VPC endpoints, CloudFront, Global Accelerator)
 
-## Week 5: Decision Flow
+## Cost Optimization Decision Flow
 
 1. **Observe**: Cost Explorer / CUR / Tags / Cost Categoriesで支出を把握する。
 2. **Right-size**: Compute OptimizerでEC2/EBS/Lambda/ECS/RDSなどの過剰・不足を確認する。

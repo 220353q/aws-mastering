@@ -22,6 +22,33 @@ CloudFrontと混同しやすいが、Global Acceleratorは **キャッシュで�
 
 ---
 
+## Static Anycast IPの利点
+
+Static Anycast IP は、ユーザーや取引先に見せる固定のグローバル入口。背後のALB/NLB/EC2/EIPやリージョンを変えても、クライアント側の接続先を安定させやすい。
+
+| 利点 | 何が嬉しいか |
+|---|---|
+| 許可リスト登録しやすい | 顧客/取引先のFirewallに固定IPを登録できる |
+| DNS TTLに依存しにくい | Route 53 failoverよりクライアント/リゾルバキャッシュの影響を受けにくい |
+| リージョン追加/移行がしやすい | ユーザー側の接続先IPを変えず、背後のendpoint groupを変えられる |
+| 近いEdgeに入れる | ユーザーは近いAWS Edgeへ入り、その後AWS global networkを通る |
+| 複数リージョンへ分散できる | endpoint health、weight、traffic dialで誘導できる |
+
+```text
+Users / Partners
+  → Static Anycast IPs
+     → AWS Edge closest to users
+        → AWS global network
+           → healthy regional endpoint
+```
+
+注意:
+- 「固定IPがほしいだけ」ならNLBやElastic IPで足りる場合がある。
+- **グローバルAnycast + 高速リージョン切替 + TCP/UDP対応** がそろうとGlobal Acceleratorが強い。
+- Static IPはacceleratorを削除すると失われる。誤削除防止も運用設計に入れる。
+
+---
+
 ## Global Accelerator vs CloudFront
 
 | 要件 | 選択 |
@@ -58,7 +85,7 @@ Global Users
 
 ---
 
-## SAP-C02 Focus
+## SAP-C02での読み方
 
 Global Acceleratorを選ぶキーワード:
 
@@ -88,6 +115,7 @@ CloudFrontを選ぶキーワード:
 
 ## Related
 
+- [Networking Foundations Deep Dive](../../comparisons/networking-foundations-deep-dive.md)
 - [Amazon Route 53](route53.md)
 - [Amazon CloudFront](cloudfront.md)
 - [Elastic Load Balancing](elb.md)
@@ -97,3 +125,11 @@ CloudFrontを選ぶキーワード:
 
 - https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html
 - https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html
+
+## このページを読んだあとに戻るべき関連ページ
+
+- [Networking Foundations Deep Dive](../../comparisons/networking-foundations-deep-dive.md)
+- [Networking Connectivity Options](../../comparisons/networking-options.md)
+- [AWS Gateway Services and Terms](../../comparisons/aws-gateways.md)
+- [Route 53](route53.md)
+- [CloudFront](cloudfront.md)

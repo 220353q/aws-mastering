@@ -186,11 +186,11 @@ AはNATとSGを過大評価している。CはALBのレイヤー違い。DはClo
 
 ## Question 5: Cognito MFAとデータレイク権限制御
 
-ある企業はCognito User Poolで顧客ポータルの認証を行い、MFA済みユーザーだけにQuickSight/Quick Sightの埋め込みダッシュボードを表示している。データはS3データレイクにあり、Glue Data CatalogとLake Formationで部門別の列レベル権限を設定している。しかし一部のMFA済みユーザーが、本来見えない列まで表示できてしまう。設計を見直すうえで最も重要な確認事項はどれか。
+ある企業はCognito User Poolで顧客ポータルの認証を行い、MFA済みユーザーだけにQuickSightの埋め込みダッシュボードを表示している。データはS3データレイクにあり、Glue Data CatalogとLake Formationで部門別の列レベル権限を設定している。しかし一部のMFA済みユーザーが、本来見えない列まで表示できてしまう。設計を見直すうえで最も重要な確認事項はどれか。
 
 A. Cognito User PoolでMFAを必須化すれば、Lake Formationの列レベル権限は自動的にすべての分析クエリへ伝播する。
 
-B. QuickSight/Quick SightやAthenaが実際に使用する実行ロール/ユーザーに対して、Lake Formationのテーブル/列権限が期待どおり対応しているか確認する。
+B. QuickSightやAthenaが実際に使用する実行ロール/ユーザーに対して、Lake Formationのテーブル/列権限が期待どおり対応しているか確認する。
 
 C. S3バケットに対して広いRead権限が付与され、Lake Formationを迂回できる経路が残っていないか確認する。
 
@@ -200,7 +200,7 @@ E. Cognito Identity Poolが発行するAWS一時認証情報を使う場合、IA
 
 F. WAFのManaged Rulesを追加すれば、列レベル権限の誤設定は自動修正される。
 
-G. QuickSight/Quick Sightのデータセット、SPICE取り込み、権限更新タイミングを確認する。
+G. QuickSightのデータセット、SPICE取り込み、権限更新タイミングを確認する。
 
 **正解: B, C, E**
 
@@ -228,4 +228,4 @@ User ── Cognito User Pool(MFA) ── App
 
 Aは認証とデータ認可を混同している。Dは暗号化と列レベル認可を混同している。FはWAFの用途違い。Gも重要な調査点だが、最も基本となる権限モデル確認としてはB/C/Eが中心。
 
-関連: [Cognito](../services/security/cognito.md), [QuickSight / Quick Sight](../services/analytics/quicksight.md), [Lake Formation](../services/analytics/lakeformation.md), [KMS](../services/security/kms.md)
+関連: [Cognito](../services/security/cognito.md), [QuickSight](../services/analytics/quicksight.md), [Lake Formation](../services/analytics/lakeformation.md), [KMS](../services/security/kms.md)

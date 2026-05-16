@@ -8,7 +8,7 @@
 | メタデータカタログ/ETL | Glue |
 | データレイク権限制御 | Lake Formation |
 | DWH/高頻度分析 | Redshift |
-| BI/ダッシュボード | QuickSight / Quick Sight |
+| BI/ダッシュボード | QuickSight |
 | データ発見・共有・ガバナンス | DataZone |
 | ストリーミング取り込み | Kinesis Data Streams / Firehose |
 | ログ検索/全文検索 | OpenSearch |
@@ -36,3 +36,15 @@ Glue Data Catalog
 - Athenaはクエリ、Glueはカタログ/ETL、Lake Formationは権限。
 - QuickSightはBIであり、ETLやDWHではない。
 - DataZoneはデータ利用体験とガバナンスの上位レイヤー。Lake Formationと同義ではない。
+
+## SAP-C02での読み方
+
+データ分析問題は、取り込み、保存、カタログ、権限、クエリ、DWH、BIを分けて読む。S3は保存場所、Glueはカタログ/ETL、Lake Formationは権限、AthenaはS3上のSQL、RedshiftはDWH、QuickSightは表示。
+
+## このページを読んだあとに戻るべき関連ページ
+
+- [Access Control and Encryption Deep Dive](access-control-and-encryption.md)
+- [Lake Formation](../services/analytics/lakeformation.md)
+- [Glue](../services/analytics/glue.md)
+- [Athena](../services/analytics/athena.md)
+- [QuickSight](../services/analytics/quicksight.md)

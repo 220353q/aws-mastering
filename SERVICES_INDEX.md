@@ -6,6 +6,18 @@
 
 ---
 
+## 横断深掘りリファレンス
+
+| 領域 | ページ | 解消する混乱 |
+|---|---|---|
+| ネットワーク基礎 | [Networking Foundations Deep Dive](comparisons/networking-foundations-deep-dive.md) | SG/NACL/Route/NAT/TGW/PrivateLink/Endpoint/GWLB/Anycast |
+| RDS/Aurora接続 | [RDS / Aurora Connection Deep Dive](comparisons/rds-aurora-connection-deep-dive.md) | DB instance/cluster/endpoint/read offload/RDS Proxy/分析分離 |
+| 認証認可と暗号化 | [Access Control and Encryption Deep Dive](comparisons/access-control-and-encryption.md) | AuthN/AuthZ/KMS/SSE/TLS/Lake Formation/QuickSight |
+| Web/API前提語 | [Web Runtime and Proxy Terms](glossary/web-runtime.md) | Tomcat/Nginx/Web server/Application server/Reverse proxy |
+| Pool系用語 | [Pool Terms](glossary/pool-terms.md) | User Pool/Identity Pool/Connection Pool/Token Bucket/Thread Pool |
+
+---
+
 ## Tier 1 - SAP-C02 コアサービス
 
 ### Compute / Containers
@@ -26,11 +38,11 @@
 | 状態 | サービス | 主な試験論点 |
 |---|---|---|
 | ✅ | [Amazon S3](services/storage/s3.md) | ストレージクラス、CRR、ライフサイクル、暗号化、OAC |
-| ◻ | Amazon EBS | EC2ブロックストレージ、スナップショット、性能設計 |
+| ✅ | [Amazon EBS](services/storage/ebs.md) | EC2ブロックストレージ、スナップショット、性能設計 |
 | ✅ | [Amazon EFS](services/storage/efs.md) | 共有ファイル、NFS、Linux、マルチAZ |
 | ✅ | [Amazon FSx](services/storage/fsx.md) | Windows / Lustre / ONTAP / OpenZFS の使い分け |
 | ✅ | [AWS Storage Gateway](services/storage/storage-gateway.md) | ハイブリッドストレージ、File/Volume/Tape Gateway |
-| ◻ | Amazon S3 Glacier | アーカイブ、復元時間、コスト |
+| ✅ | [Amazon S3 Glacier](services/storage/s3-glacier.md) | アーカイブ、復元時間、コスト |
 | ✅ | [AWS Backup](services/storage/backup.md) | 一元バックアップ、クロスリージョン/クロスアカウント |
 
 ### Database
@@ -66,7 +78,7 @@
 | ✅ | [AWS IAM & Organizations](services/security/iam.md) | 権限評価、SCP、Permission Boundary、クロスアカウント |
 | ✅ | [Amazon GuardDuty](services/security/guardduty.md) | 脅威検出、Organizations集約 |
 | ✅ | [AWS KMS](services/security/kms.md) | Key Policy、Grants、SSE-KMS、クロスアカウント |
-| ◻ | AWS IAM Identity Center | 社員向けSSO、Permission Set、Organizations |
+| ✅ | [AWS IAM Identity Center](services/security/iam-identity-center.md) | 社員向けSSO、Permission Set、Organizations |
 | ✅ | [Amazon Cognito](services/security/cognito.md) | User Pool / Identity Pool、アプリ認証 |
 | ✅ | [AWS Secrets Manager](services/security/secrets-manager.md) | シークレット管理、自動ローテーション |
 | ✅ | [AWS Certificate Manager](services/security/acm.md) | TLS証明書、CloudFront/ALB連携 |
@@ -87,11 +99,11 @@
 | ✅ | [AWS Fault Injection Simulator](services/management/fis.md) | 障害注入、DRテスト、信頼性検証 |
 | ✅ | [AWS X-Ray](services/management/xray.md) | 分散トレーシング |
 | ✅ | [AWS CloudFormation](services/management/cloudformation.md) | IaC、StackSets、Change Set、Drift Detection |
-| ◻ | AWS Trusted Advisor | コスト/セキュリティ/信頼性チェック |
-| ◻ | AWS Service Catalog | 標準化されたプロビジョニング |
+| ✅ | [AWS Trusted Advisor](services/management/trusted-advisor.md) | コスト/セキュリティ/信頼性チェック |
+| ✅ | [AWS Service Catalog](services/management/service-catalog.md) | 標準化されたプロビジョニング |
 | ◻ | AWS License Manager | ライセンス管理、移行時の最適化 |
 | ✅ | [AWS Compute Optimizer](services/cost/compute-optimizer.md) | Rightsizing、コスト最適化 |
-| ◻ | AWS Resilience Hub | 回復性評価、RTO/RPO検証 |
+| ✅ | [AWS Resilience Hub](services/management/resilience-hub.md) | 回復性評価、RTO/RPO検証 |
 
 ### Analytics / Data Lake
 
@@ -102,8 +114,8 @@
 | ✅ | [AWS Lake Formation](services/analytics/lakeformation.md) | データレイク権限、行/列レベル制御 |
 | ✅ | [Amazon Kinesis](services/analytics/kinesis.md) | ストリーミング、Data Streams / Firehose |
 | ✅ | [Amazon OpenSearch Service](services/analytics/opensearch.md) | ログ検索、全文検索、可視化 |
-| ◻ | Amazon EMR | Spark/Hadoop、ビッグデータ処理 |
-| ✅ | [Amazon QuickSight / Amazon Quick Sight](services/analytics/quicksight.md) | BI、埋め込み、可視化 |
+| ✅ | [Amazon EMR](services/analytics/emr.md) | Spark/Hadoop、ビッグデータ処理 |
+| ✅ | [Amazon QuickSight](services/analytics/quicksight.md) | BI、埋め込み、可視化 |
 | ✅ | [Amazon DataZone](services/analytics/datazone.md) | データガバナンス、カタログ |
 | ◻ | AWS Data Exchange | 外部データセット利用 |
 
@@ -118,7 +130,7 @@
 | ✅ | [Amazon EventBridge](services/integration/eventbridge.md) | イベントバス、疎結合、SaaS連携、Archive/Replay |
 | ✅ | [Amazon SQS](services/integration/sqs.md) | キュー、バッファ、DLQ、FIFO |
 | ✅ | [Amazon SNS](services/integration/sns.md) | Pub/Sub、ファンアウト、通知 |
-| ◻ | AWS AppSync | GraphQL、リアルタイムAPI |
+| ✅ | [AWS AppSync](services/integration/appsync.md) | GraphQL、リアルタイムAPI |
 
 ### Migration & Transfer
 
@@ -132,6 +144,7 @@
 | ✅ | [AWS Application Discovery Service](services/migration/application-discovery-service.md) | サーバー発見、依存関係、移行計画 |
 | ✅ | [AWS Snow Family](services/migration/snow-family.md) | オフライン大容量移行、エッジ処理 |
 | ✅ | [AWS Transfer Family](services/migration/transfer-family.md) | SFTP/FTPS/FTP/AS2 のマネージド転送 |
+| ✅ | [AWS Elastic Disaster Recovery](services/migration/elastic-disaster-recovery.md) | サーバー単位の継続レプリケーションDR |
 
 ---
 
@@ -211,8 +224,8 @@
 
 ### Additional Data / Specialized Databases
 
-- Amazon Managed Streaming for Apache Kafka (MSK)
-- Amazon Managed Service for Apache Flink
+- [Amazon Managed Streaming for Apache Kafka (MSK)](services/analytics/msk.md)
+- [Amazon Managed Service for Apache Flink](services/analytics/flink.md)
 - Amazon Timestream
 - Amazon Keyspaces
 - Amazon QLDB

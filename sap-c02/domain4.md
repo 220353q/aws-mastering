@@ -52,18 +52,18 @@ Application Migration Service + DMS + SCT / DMS Schema Conversion + DataSync + S
 
 ---
 
-## Week 4 Additions
+## Hybrid Storage and File Platform Selection Notes
 
 - オンプレアプリを変えずNFS/SMB/iSCSI/Tapeを継続するならStorage Gateway。
 - 移行後のファイル共有要件は、Linux/NFSならEFS、Windows/SMBならFSx for Windows、HPCならFSx for Lustre。
 
 ---
 
-## Week 5 Additions
+## Migration Landing Zone, Cost, and Modernization Notes
 
 - 移行先環境の標準展開はCloudFormation StackSetsやControl Towerと組み合わせる。
 - 移行後のコスト最適化はCompute Optimizer、Cost Explorer、Savings Plans/RI、Storage Lifecycleで段階的に行う。
-- レガシー分析基盤のモダナイズでは、S3 + Glue + Athena + Lake Formation + QuickSight/Quick Sight + DataZoneの役割分担を明確にする。
+- レガシー分析基盤のモダナイズでは、S3 + Glue + Athena + Lake Formation + QuickSight + DataZoneの役割分担を明確にする。
 
 ---
 

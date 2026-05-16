@@ -1,6 +1,6 @@
 # SAP-C02 Scenario Set 01
 
-Week 1〜5で追加した論点を横断する長文シナリオ型問題集。
+Domain横断の重要論点をまとめた長文シナリオ型問題集。
 
 ---
 
@@ -32,7 +32,7 @@ AはCloudWatch Logsを監査の一次情報として扱っている点が弱い�
 
 ## Question 2: KMSクロスアカウントとS3データレイク
 
-ある企業は中央データレイクアカウントのS3バケットに、各事業部アカウントからログと取引データを集約している。すべてのオブジェクトはSSE-KMSで暗号化し、分析アカウントのAthenaとQuickSight/Quick Sightから一部のテーブルだけを参照させたい。データ所有部門は列単位で機密項目を制御したいが、分析者にはS3バケット全体の直接読み取り権限を与えたくない。最も適切な設計はどれか。
+ある企業は中央データレイクアカウントのS3バケットに、各事業部アカウントからログと取引データを集約している。すべてのオブジェクトはSSE-KMSで暗号化し、分析アカウントのAthenaとQuickSightから一部のテーブルだけを参照させたい。データ所有部門は列単位で機密項目を制御したいが、分析者にはS3バケット全体の直接読み取り権限を与えたくない。最も適切な設計はどれか。
 
 A. 分析者にS3FullAccessを付与し、KMS key policyではrootを許可する。AthenaはS3を直接読み取るためLake Formationは不要である。
 
@@ -48,11 +48,11 @@ E. CloudFront OACをS3バケットの前段に置き、AthenaとQuickSightから
 
 ### 解説
 
-SSE-KMSで暗号化されたS3データをクロスアカウントで読むには、S3/IAMだけでなくKMS key policy側も許可が必要。テーブル/列レベルのデータレイク権限はLake Formationの領域。QuickSight/Quick SightやAthenaの実行ロールに対して、S3、KMS、Glue/Lake Formation権限を整合させる必要がある。
+SSE-KMSで暗号化されたS3データをクロスアカウントで読むには、S3/IAMだけでなくKMS key policy側も許可が必要。テーブル/列レベルのデータレイク権限はLake Formationの領域。QuickSightやAthenaの実行ロールに対して、S3、KMS、Glue/Lake Formation権限を整合させる必要がある。
 
 Dはよくある罠。MFA済み認証とLake Formationのデータ権限は自動的に同義ではない。
 
-関連: [KMS](../services/security/kms.md), [Athena](../services/analytics/athena.md), [Glue](../services/analytics/glue.md), [Lake Formation](../services/analytics/lakeformation.md), [QuickSight / Quick Sight](../services/analytics/quicksight.md)
+関連: [KMS](../services/security/kms.md), [Athena](../services/analytics/athena.md), [Glue](../services/analytics/glue.md), [Lake Formation](../services/analytics/lakeformation.md), [QuickSight](../services/analytics/quicksight.md)
 
 ---
 
@@ -86,7 +86,7 @@ E. AWS Budgetsだけを設定し、予算超過通知によってコスト最適
 
 A. S3に全データを置き、全員にS3 Read権限を与える。SQL分析、ETL、BI、利用申請はすべてS3 Selectで実現する。
 
-B. Glue Data CatalogとCrawlerでメタデータを管理し、Glue JobsでETLを行い、AthenaでS3上のデータをSQL分析する。Lake Formationでテーブル/列レベル権限を管理し、QuickSight/Quick SightでBIを提供する。部門横断の発見・申請・共有にはDataZoneを使う。
+B. Glue Data CatalogとCrawlerでメタデータを管理し、Glue JobsでETLを行い、AthenaでS3上のデータをSQL分析する。Lake Formationでテーブル/列レベル権限を管理し、QuickSightでBIを提供する。部門横断の発見・申請・共有にはDataZoneを使う。
 
 C. Redshiftだけに全データをロードし、ETL、権限申請、BI、カタログをすべてRedshiftで完結させる。
 
@@ -98,9 +98,9 @@ E. OpenSearchにすべてのデータを投入し、SQL分析とBIをOpenSearch 
 
 ### 解説
 
-S3データレイクでは、Glueがカタログ/ETL、AthenaがSQLクエリ、Lake Formationがデータレイク権限、QuickSight/Quick SightがBI、DataZoneがデータ発見・共有・申請の上位ガバナンスを担う。各サービスの役割を混同しないことが重要。
+S3データレイクでは、Glueがカタログ/ETL、AthenaがSQLクエリ、Lake Formationがデータレイク権限、QuickSightがBI、DataZoneがデータ発見・共有・申請の上位ガバナンスを担う。各サービスの役割を混同しないことが重要。
 
-関連: [Athena](../services/analytics/athena.md), [Glue](../services/analytics/glue.md), [DataZone](../services/analytics/datazone.md), [QuickSight / Quick Sight](../services/analytics/quicksight.md)
+関連: [Athena](../services/analytics/athena.md), [Glue](../services/analytics/glue.md), [DataZone](../services/analytics/datazone.md), [QuickSight](../services/analytics/quicksight.md)
 
 ---
 

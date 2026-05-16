@@ -17,13 +17,17 @@
 
 ### Phase 3: 移行・分析・ML・管理
 10. **MGN, DMS, SCT, DataSync, Migration Hub, Snow Family** - 移行・モダナイゼーション
-11. **Athena, Glue, Redshift, QuickSight/Quick Sight, Lake Formation, DataZone** - 分析・BI・データガバナンス
+11. **Athena, Glue, Redshift, QuickSight, Lake Formation, DataZone** - 分析・BI・データガバナンス
 12. **SageMaker, Bedrock, Rekognition** - ML/AI
 13. **CloudWatch, CloudTrail, Config, CloudFormation, Systems Manager, Security Hub** - 管理・監視・監査・IaC・所見集約
 
 ### Phase 4: 実践デザイン & 対策
 14. **Well-Architected レビュー** + `patterns/`
 15. **comparisons/** で最適サービス選択力を確立（networking / messaging / storage / edge-security / governance / cost / analytics）
+    - ネットワークで混乱したら [Networking Foundations Deep Dive](comparisons/networking-foundations-deep-dive.md)
+    - RDS/Aurora接続で混乱したら [RDS / Aurora Connection Deep Dive](comparisons/rds-aurora-connection-deep-dive.md)
+    - 認証/認可/暗号化で混乱したら [Access Control and Encryption Deep Dive](comparisons/access-control-and-encryption.md)
+    - Web/API前提語で混乱したら [Web Runtime and Proxy Terms](glossary/web-runtime.md) と [Pool Terms](glossary/pool-terms.md)
 16. **sap-c02/** でドメイン別に弱点を洗い出す
 17. **practice/exam-techniques.md** で、長文問題の制約語・誤答パターンを確認する
 18. **practice/scenario-set-01〜04** を解き、各設問の誤答理由をサービスページへ戻って復習する

@@ -13,19 +13,24 @@
 | AWS Shield | [shield.md](shield.md) | DDoS対策、Standard/Advanced |
 | AWS Network Firewall | [network-firewall.md](network-firewall.md) | VPC境界のネットワーク検査、stateful/stateless rules |
 | Amazon GuardDuty | [guardduty.md](guardduty.md) | 脅威検出、Organizations集約 |
+| AWS IAM Identity Center | [iam-identity-center.md](iam-identity-center.md) | 社員SSO、Permission Set、Organizations |
 
 ## Tier 2 / Related
 
-- AWS IAM Identity Center
+- [AWS Resource Access Manager](ram.md)
+- [AWS Security Token Service](sts.md)
 - [AWS Security Hub](../management/security-hub.md)
 - [AWS Config](../management/config.md)
 - [AWS CloudTrail](../management/cloudtrail.md)
-- AWS Firewall Manager
+- [AWS Firewall Manager](firewall-manager.md)
 - Amazon Detective
-- Amazon Inspector
+- [Amazon Inspector](inspector.md)
+- [Amazon Macie](macie.md)
 
 ## Key Principle
 
 Defense in depth: Identity (IAM/Cognito) + Network (VPC/SG/Endpoint/Network Firewall) + Data (KMS/Secrets Manager) + Edge (WAF/Shield/CloudFront) + Detection (GuardDuty/Security Hub) + Audit (CloudTrail/Config)。
 
 詳しくは [Edge and Network Security Comparison](../../comparisons/edge-security.md) を参照。
+
+権限、暗号化、KMS、Lake Formation、QuickSightが混ざる問題は [Access Control and Encryption Map](../../comparisons/access-control-and-encryption.md) を参照。

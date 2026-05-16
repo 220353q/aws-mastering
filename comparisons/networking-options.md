@@ -13,6 +13,7 @@
 | Gateway Endpoint | S3/DynamoDBへのプライベートアクセス | Low | Low | S3/DynamoDB専用。NAT削減に有効 |
 | Global Accelerator | グローバルAnycast入口・高速フェイルオーバー | Low | Medium-High | キャッシュしない。TCP/UDPにも有効 |
 | CloudFront | HTTP(S)配信・キャッシュ・エッジ保護 | Low | Medium | 静的/動的Web、OAC、WAF連携 |
+| Network Firewall / GWLB | VPC境界や中央検査VPCで通信を検査 | Medium | Medium-High | セキュリティ検査。通常の接続方式とは役割が違う |
 
 ---
 
@@ -42,6 +43,9 @@ S3/DynamoDBへのNAT Gatewayコストを削減？
 
 HTTPキャッシュ・OAC・エッジ配信？
   → CloudFront
+
+サブネット単位のDeny、または中央検査VPC？
+  → NACL / Network Firewall / GWLB
 ```
 
 ---
@@ -53,11 +57,14 @@ HTTPキャッシュ・OAC・エッジ配信？
 - Global Acceleratorはキャッシュしない。キャッシュ要件ならCloudFront。
 - VPC Peeringは推移的ルーティング不可。大規模ハブにはTGW。
 - Site-to-Site VPNは2本のトンネルを両方設定して冗長化する。
+- SGはAllowのみ。明示DenyはNACL、Network Firewall、WAF、IAM/SCPなどで考える。
+- Route TableはFirewallではない。通信可否はSG/NACL/Firewallも見る。
 
 ---
 
 ## Related
 
+- [Networking Foundations Deep Dive](networking-foundations-deep-dive.md)
 - [Amazon VPC](../services/networking/vpc.md)
 - [AWS Transit Gateway](../services/networking/transitgateway.md)
 - [AWS Direct Connect](../services/networking/direct-connect.md)
@@ -65,3 +72,15 @@ HTTPキャッシュ・OAC・エッジ配信？
 - [AWS PrivateLink](../services/networking/privatelink.md)
 - [AWS Global Accelerator](../services/networking/global-accelerator.md)
 - [Amazon CloudFront](../services/networking/cloudfront.md)
+- [Security Group / NACL / Firewall](network-security-boundaries.md)
+- [AWS Gateway Services and Terms](aws-gateways.md)
+
+## SAP-C02での読み方
+
+接続サービスの比較では、最初に「VPC全体をつなぐのか」「サービス単位でprivate公開するのか」「オンプレとつなぐのか」「グローバル入口を改善するのか」を分ける。PrivateLinkはサービス単位、TGWは多数ネットワークのハブ、Global Acceleratorは固定Anycast IP入口、CloudFrontはHTTPキャッシュ/CDNとして読む。
+
+## このページを読んだあとに戻るべき関連ページ
+
+- [Networking Foundations Deep Dive](networking-foundations-deep-dive.md)
+- [AWS Gateway Services and Terms](aws-gateways.md)
+- [Security Group / NACL / Firewall](network-security-boundaries.md)

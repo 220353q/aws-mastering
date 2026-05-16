@@ -246,3 +246,16 @@ S3 オブジェクトを SSE-KMS で暗号化している場合、S3 bucket poli
 | S3アクセス拒否 | S3FullAccess but denied | Explicit Deny / bucket policy / SCP / KMS を確認 |
 | KMS暗号化S3 | encrypted object, vendor access | S3許可 + KMS key policy/IAM許可 |
 | リージョン制限 | only approved Regions | SCP with `aws:RequestedRegion` |
+
+## SAP-C02での読み方
+
+IAM問題は「権限を付与するもの」と「上限を作るもの」を分ける。SCPとPermission BoundaryはAllowを生み出さない。AssumeRoleでは、呼び出し元の`sts:AssumeRole`、引き受け先RoleのTrust policy、RoleのPermission policy、対象リソース側のResource policy/KMS key policyを順に確認する。
+
+## このページを読んだあとに戻るべき関連ページ
+
+- [Access Control and Encryption Deep Dive](../../comparisons/access-control-and-encryption.md)
+- [STS](sts.md)
+- [KMS](kms.md)
+- [Cognito](cognito.md)
+- [IAM Identity Center](iam-identity-center.md)
+- [Lake Formation](../analytics/lakeformation.md)
