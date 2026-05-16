@@ -21,3 +21,15 @@
 - Savings Plans vs Reserved vs Spot
 - Serverless cost optimization
 - Data transfer cost awareness (VPC endpoints, CloudFront, Global Accelerator)
+
+## Week 5: Decision Flow
+
+1. **Observe**: Cost Explorer / CUR / Tags / Cost Categoriesで支出を把握する。
+2. **Right-size**: Compute OptimizerでEC2/EBS/Lambda/ECS/RDSなどの過剰・不足を確認する。
+3. **Architect**: Auto Scaling、Serverless、S3 Lifecycle、VPC Endpoints、CloudFrontで構造的に下げる。
+4. **Commit**: 安定ベースラインにSavings Plans / RIを適用する。
+5. **Govern**: Budgetsで予算、利用率、カバレッジを監視する。
+
+## High-Risk Trap
+
+Savings PlansやReserved Instancesは、容量や設計の過剰を直すものではない。SAP-C02では、まず需要パターンと利用実績を分析し、Rightsizing後にコミットメントを検討する流れが安全。
