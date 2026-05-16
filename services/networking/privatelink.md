@@ -131,6 +131,8 @@ IAM policy / Resource policy / Endpoint policy
 
 PrivateLinkは、**「VPC同士をつなぐ」ではなく「サービスをプライベートに利用/公開する」** と覚える。S3/DynamoDBならGateway Endpoint、KMS/ECR/SSM/Secrets Manager等ならInterface Endpoint、サービス公開ならEndpoint Service + NLBを選ぶ。
 
+Endpoint / ENI / VIF の用語横断整理は [AWS Endpoint / ENI / VIF 完全整理](../../comparisons/endpoints-eni-vif.md) を参照。
+
 ## Official Docs
 - Gateway endpoints: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html
 - Interface endpoints: https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html
@@ -138,6 +140,7 @@ PrivateLinkは、**「VPC同士をつなぐ」ではなく「サービスをプ�
 
 ## このページを読んだあとに戻るべき関連ページ
 
+- [AWS Endpoint / ENI / VIF 完全整理](../../comparisons/endpoints-eni-vif.md)
 - [Networking Foundations Deep Dive](../../comparisons/networking-foundations-deep-dive.md)
 - [AWS Gateway Services and Terms](../../comparisons/aws-gateways.md)
 - [Networking Connectivity Options](../../comparisons/networking-options.md)
