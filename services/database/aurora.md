@@ -63,6 +63,8 @@ DBA / monitoring
 
 Reader endpointは読み取りをAurora Replica群へ分散するが、writer直後の最新データを常に即座に読めることを保証するものではない。強いread-after-writeが必要な処理では、writer endpointを使うか、アプリ側で読み取り経路を分ける。
 
+Endpoint / ENI / VIF の用語横断整理は [AWS Endpoint / ENI / VIF 完全整理](../../comparisons/endpoints-eni-vif.md) を参照。
+
 ## Global Databaseの読み方
 
 Aurora Global Databaseは、基本的に1つのprimary Regionでwriteし、secondary Regionは低レイテンシreadとDRに使う。リージョン障害時はsecondaryを昇格させて復旧する。DynamoDB Global Tablesのような双方向multi-active writeを簡単に実現するサービスではない。
@@ -124,6 +126,7 @@ Auroraは、RDB互換を保ちたいが、可用性、読み取り性能、グ�
 
 ## このページを読んだあとに戻るべき関連ページ
 
+- [AWS Endpoint / ENI / VIF 完全整理](../../comparisons/endpoints-eni-vif.md)
 - [Amazon RDS & Amazon Aurora](rds.md)
 - [RDS / Aurora Connection Deep Dive](../../comparisons/rds-aurora-connection-deep-dive.md)
 - [DynamoDB vs Aurora](../../comparisons/dynamodb-vs-aurora.md)
