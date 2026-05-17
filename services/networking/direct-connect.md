@@ -28,6 +28,8 @@ Direct Connectは「インターネットを通らない専用接続」だが、
 | Public VIF | AWS public services | S3等のパブリックAWSサービスへ専用線経由接続 |
 | Transit VIF | Direct Connect Gateway + Transit Gateway | 複数VPC/複数アカウント/大規模接続 |
 
+Endpoint / ENI / VIF の用語横断整理は [AWS Endpoint / ENI / VIF 完全整理](../../comparisons/endpoints-eni-vif.md) を参照。
+
 ---
 
 ## Direct Connect Gateway
@@ -131,3 +133,10 @@ Direct Connectは、**ハイブリッド接続の性能・安定性・冗長性�
 - AWS Direct Connect connectivity options: https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect.html
 - Direct Connect + Transit Gateway: https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-aws-transit-gateway.html
 - Direct Connect + Site-to-Site VPN: https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-site-to-site-vpn.html
+
+## このページを読んだあとに戻るべき関連ページ
+
+- [AWS Endpoint / ENI / VIF 完全整理](../../comparisons/endpoints-eni-vif.md)
+- [Networking Connectivity Options](../../comparisons/networking-options.md)
+- [AWS PrivateLink / VPC Endpoints](privatelink.md)
+- [Amazon VPC](vpc.md)
