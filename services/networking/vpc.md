@@ -51,6 +51,8 @@ EC2 / ALB / RDS
 
 詳しくは [AWS Gateway Services and Terms](../../comparisons/aws-gateways.md) と [Networking Foundations Deep Dive](../../comparisons/networking-foundations-deep-dive.md) を参照。
 
+Endpoint / ENI / VIF の用語横断整理は [AWS Endpoint / ENI / VIF 完全整理](../../comparisons/endpoints-eni-vif.md) を参照。
+
 ## Use Cases (Tier 1)
 1. **Secure Multi-Tier Web App** - Public subnets (ALB), Private subnets (EC2/App), Isolated (DB)
 2. **Hybrid Connectivity** - Direct Connect + VPN + Transit Gateway
@@ -85,6 +87,7 @@ VPC問題は、まず「経路」と「許可」を分ける。Route Tableは道
 
 ## このページを読んだあとに戻るべき関連ページ
 
+- [AWS Endpoint / ENI / VIF 完全整理](../../comparisons/endpoints-eni-vif.md)
 - [Networking Foundations Deep Dive](../../comparisons/networking-foundations-deep-dive.md)
 - [Security Group / NACL / Firewall Decision Guide](../../comparisons/network-security-boundaries.md)
 - [AWS Gateway Services and Terms](../../comparisons/aws-gateways.md)
