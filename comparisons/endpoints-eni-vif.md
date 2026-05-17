@@ -6,6 +6,8 @@ AWSでは **endpoint** という言葉が複数のレイヤーで使われる。
 
 このページは、SAP-C02で混同しやすい **Endpoint / ENI / VIF / Gateway / Interface** を横断して整理する。
 
+Endpoint / ENI / VIF / PrivateLink の理解に不安がある場合は、先に [Endpoint / ENI / VIF / PrivateLink 理解補完レジュメ](endpoints-eni-vif-remedial-resume.md) を読む。
+
 ---
 
 ## まず一言でいうと
@@ -504,6 +506,7 @@ Direct Connect VIF    = オンプレ接続の論理インターフェース
 
 ## 関連ページ
 
+- [Endpoint / ENI / VIF / PrivateLink 理解補完レジュメ](endpoints-eni-vif-remedial-resume.md)
 - [Amazon VPC](../services/networking/vpc.md)
 - [AWS PrivateLink / VPC Endpoints](../services/networking/privatelink.md)
 - [AWS Direct Connect](../services/networking/direct-connect.md)
