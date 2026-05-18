@@ -4,6 +4,8 @@
 
 Elastic Load Balancing は、複数ターゲットへトラフィックを分散し、ヘルスチェックに基づいて正常なターゲットへルーティングする基盤サービス。SAP-C02では **ALB / NLB / Gateway Load Balancer の使い分け** が重要。
 
+ALB/NLBがどのサービスの前段・後段に来るか、プロトコル別の入口サービスと具体ユースケースは [Protocols and Load Balancer Positioning](../../comparisons/protocols-load-balancers-positioning.md) を参照。
+
 ---
 
 ## Load Balancer Types
@@ -110,6 +112,7 @@ ELB選択問題では、次の順に読む。
 
 ## Related
 
+- [Protocols and Load Balancer Positioning](../../comparisons/protocols-load-balancers-positioning.md)
 - [Networking Foundations Deep Dive](../../comparisons/networking-foundations-deep-dive.md)
 - [Amazon VPC](vpc.md)
 - [AWS PrivateLink](privatelink.md)
@@ -124,6 +127,7 @@ ELB選択問題では、次の順に読む。
 
 ## このページを読んだあとに戻るべき関連ページ
 
+- [Protocols and Load Balancer Positioning](../../comparisons/protocols-load-balancers-positioning.md)
 - [Networking Foundations Deep Dive](../../comparisons/networking-foundations-deep-dive.md)
 - [AWS Gateway Services and Terms](../../comparisons/aws-gateways.md)
 - [Security Group / NACL / Firewall](../../comparisons/network-security-boundaries.md)
