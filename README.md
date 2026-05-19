@@ -31,8 +31,9 @@ SAP-C02合格 + 実務アーキテクト力向上を目指す人のためのガ�
 4. **試験対策する**: `sap-c02/` でドメイン別に頻出論点を確認する
 5. **ネットワークで詰まったら**: `comparisons/networking-foundations-deep-dive.md` で経路/SG/NACL/Gateway/Endpointを確認する
 6. **権限・暗号化で混乱したら**: `comparisons/access-control-and-encryption.md` でIAM/KMS/Lake Formation/QuickSight/TLSを整理する
-7. **DB接続で詰まったら**: `comparisons/rds-aurora-connection-deep-dive.md` でendpoint、read offload、RDS Proxy、分析分離を確認する
-8. **AWS外の前提語で詰まったら**: `glossary/web-runtime.md` と `glossary/pool-terms.md` に戻る
+7. **権限制御の境界で混乱したら**: `comparisons/iam-boundaries-scp-condition-deep-dive.md` でPermission Boundary/SCP/Session Policy/Resource-based Policy/Conditionを整理する
+8. **DB接続で詰まったら**: `comparisons/rds-aurora-connection-deep-dive.md` でendpoint、read offload、RDS Proxy、分析分離を確認する
+9. **AWS外の前提語で詰まったら**: `glossary/web-runtime.md` と `glossary/pool-terms.md` に戻る
 
 ## 📊 現在の進捗
 
@@ -51,6 +52,7 @@ SAP-C02合格 + 実務アーキテクト力向上を目指す人のためのガ�
 - `practice/exam-techniques.md` を追加し、SAP-C02長文シナリオの読解フレームを整理
 - 公式スコープ差分表、構成図集、用語集、本番形式模試を追加
 - ネットワーク、RDS/Aurora接続、認証認可/暗号化、Web/API、Pool系の「説明の説明」深掘りページを追加
+- Permission Boundary、SCP、Session Policy、Resource-based Policy、Conditionの境界整理ページを追加
 
 ## 次の拡張候補
 
