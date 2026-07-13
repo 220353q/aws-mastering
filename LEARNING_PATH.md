@@ -2,11 +2,38 @@
 
 ## SAP-C02向け推奨学習順序
 
-このリポジトリは、サービスページを順番に暗記するよりも、最初に設計判断の全体像をつかみ、必要な資料へ戻る使い方を推奨する。
+このリポジトリは、サービスページを順番に暗記するよりも、説明文の読み方と設計判断の全体像をつかみ、必要な資料へ戻る使い方を推奨する。
+
+## Phase -1: AWSの説明を分解できるようにする
+
+最初に [AWS「説明の説明」](EXPLANATION_OF_EXPLANATIONS.md) を読む。
+
+AWSの説明文には、`route`、`proxy`、`endpoint`、`replication`、`cache`、`stateful`、`managed`、`failover` など、一般IT用語が圧縮されている。次の形へ展開できる状態を作る。
+
+```text
+誰が
+  → 何を
+  → どこへ
+  → いつ
+  → どうやって
+  → なぜ
+  → どんな代償で
+```
+
+### Phase -1の完了条件
+
+- 「前段」「後段」が何を基準にした位置関係か説明できる
+- client/serverとproducer/consumerを分けられる
+- route、forward、proxy、replicate、cache、bufferの違いを説明できる
+- public/private、sync/async、stateless/statefulを二択暗記せず説明できる
+- availability、replica、backup、DRを分けられる
+- latency、throughput、IOPS、concurrencyを分けられる
+- authentication、authorization、credential、roleを分けられる
+- retryが起きる構成でidempotencyが必要な理由を説明できる
 
 ## Phase 0: 通読して設計の型を作る
 
-最初に [AWS SAP設計読本](SAP_DESIGN_READER.md) を読む。
+次に [AWS SAP設計読本](SAP_DESIGN_READER.md) を読む。
 
 読了時の目標は、次の一文を自分で作れることである。
 
@@ -23,6 +50,18 @@
 候補:
 採用:
 不採用理由:
+```
+
+説明そのものが理解できない場合は、次のメモを追加する。
+
+```text
+主体:
+入力:
+処理:
+出力 / 状態変化:
+通信経路:
+データの正本:
+代償:
 ```
 
 ## Phase 1: 基盤固め（Tier 1重点）
@@ -47,6 +86,7 @@
 - EventBridgeからECSタスクを定刻起動するとき、API Gatewayが不要な理由を説明する
 - SQSとEventBridgeを「どちらが上か」ではなく、バッファとルーティングの役割で分ける
 - ECSとEKSを、Kubernetes要件と運用負荷から比較する
+- 「疎結合にする」という一文を、停止時・急増時・再試行時の動作へ展開する
 
 ## Phase 3: 移行、分析、AI、管理
 
@@ -85,14 +125,25 @@
 - MGN、DMS、DataSync、Snow Familyの選択
 - SCP、Permission Boundary、Resource-based Policy、Session Policyの境界
 
+さらに、各説明へ次を追加する。
+
+- 誰が動作主体か
+- 何が通信・複製・保存されるか
+- 状態はどこにあるか
+- 障害時に何が起きるか
+- 何ではないか
+- どんな代償があるか
+
 ## 学習完了の判定
 
 次の状態になれば、単体暗記からSAP型の学習へ移行できている。
 
+- AWSの短い説明を通信・データ・状態・責任へ展開できる
 - 問題文から強い制約語を抜き出せる
 - 通信経路とデータフローを簡単な図にできる
+- 矢印がHTTP、event、message、replication、DNS、role assumptionのどれか説明できる
 - 正解の理由だけでなく、誤答が失格になる理由を説明できる
 - RTO/RPO、運用負荷、移行停止時間、コストを比較軸にできる
-- 不明点が出たとき、どのサービスページや比較表へ戻るべきか分かる
+- 不明点が出たとき、どの基礎読本、サービスページ、比較表へ戻るべきか分かる
 
-**Tips**: Tier 1を完了後にTier 2へ進む。サービス単体暗記ではなく、「なぜ他サービスではないのか」を必ず比較する。
+**Tips**: Tier 1を完了後にTier 2へ進む。サービス単体暗記ではなく、「誰が何をしているか」と「なぜ他サービスではないのか」を必ず言語化する。

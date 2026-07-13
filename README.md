@@ -6,7 +6,16 @@ SAP-C02合格と、実務で「なぜその設計なのか」を説明できる�
 
 ## 📖 最初に読む
 
-このリポジトリを読み物として学ぶ場合は、まず **[AWS SAP設計読本](SAP_DESIGN_READER.md)** を最初から読む。
+AWSの説明文に出てくる `endpoint`、`proxy`、`replication`、`stateful`、`managed`、`failover` などの前提語が曖昧な場合は、最初に **[AWS「説明の説明」](EXPLANATION_OF_EXPLANATIONS.md)** を読む。
+
+その後、**[AWS SAP設計読本](SAP_DESIGN_READER.md)** を最初から読む。
+
+### 二つの読本の役割
+
+| 読本 | 身につけること |
+|---|---|
+| [AWS「説明の説明」](EXPLANATION_OF_EXPLANATIONS.md) | AWS解説文を「誰が・何を・どこへ・なぜ・どの条件で」へ分解する力 |
+| [AWS SAP設計読本](SAP_DESIGN_READER.md) | 要件、制約、候補、比較、不採用理由から設計を選ぶ力 |
 
 設計読本は、個別サービスの暗記ではなく、次の流れを一冊にまとめている。
 
@@ -24,6 +33,7 @@ SAP-C02合格と、実務で「なぜその設計なのか」を説明できる�
 
 ## 📁 フォルダ構成
 
+- `EXPLANATION_OF_EXPLANATIONS.md` - AWSの説明文を読み解くための基礎読本
 - `SAP_DESIGN_READER.md` - SAP設計判断を通読で学ぶ本編
 - `services/` - 各AWSサービス詳細
 - `comparisons/` - サービス対比表・混同しやすい概念の深掘り
@@ -39,16 +49,33 @@ SAP-C02合格と、実務で「なぜその設計なのか」を説明できる�
 
 ## 🚀 使い方
 
-1. **通読する**: [AWS SAP設計読本](SAP_DESIGN_READER.md) で、要件から設計を導く考え方をつかむ
-2. **体系的に深める**: `LEARNING_PATH.md` を順番に読む
-3. **辞書的に調べる**: `SERVICES_INDEX.md` からサービスページへ移動する
-4. **設計力を鍛える**: `architecture-diagrams/`、`patterns/`、`comparisons/` を使い、採用理由と不採用理由を言語化する
-5. **試験対策する**: `sap-c02/` でドメイン別に頻出論点を確認する
-6. **ネットワークで詰まったら**: `comparisons/networking-foundations-deep-dive.md` で経路、SG、NACL、Gateway、Endpointを確認する
-7. **権限・暗号化で混乱したら**: `comparisons/access-control-and-encryption.md` でIAM、KMS、Lake Formation、QuickSight、TLSを整理する
-8. **権限制御の境界で混乱したら**: `comparisons/iam-boundaries-scp-condition-deep-dive.md` でPermission Boundary、SCP、Session Policy、Resource-based Policy、Conditionを整理する
-9. **DB接続で詰まったら**: `comparisons/rds-aurora-connection-deep-dive.md` でendpoint、read offload、RDS Proxy、分析分離を確認する
-10. **AWS外の前提語で詰まったら**: `glossary/web-runtime.md` と `glossary/pool-terms.md` に戻る
+1. **説明を分解する**: [AWS「説明の説明」](EXPLANATION_OF_EXPLANATIONS.md) で、用語・通信・状態・責任・因果関係の読み方を覚える
+2. **設計を通読する**: [AWS SAP設計読本](SAP_DESIGN_READER.md) で、要件から設計を導く考え方をつかむ
+3. **体系的に深める**: `LEARNING_PATH.md` を順番に読む
+4. **辞書的に調べる**: `SERVICES_INDEX.md` からサービスページへ移動する
+5. **設計力を鍛える**: `architecture-diagrams/`、`patterns/`、`comparisons/` を使い、採用理由と不採用理由を言語化する
+6. **試験対策する**: `sap-c02/` でドメイン別に頻出論点を確認する
+7. **ネットワークで詰まったら**: `comparisons/networking-foundations-deep-dive.md` で経路、SG、NACL、Gateway、Endpointを確認する
+8. **権限・暗号化で混乱したら**: `comparisons/access-control-and-encryption.md` でIAM、KMS、Lake Formation、QuickSight、TLSを整理する
+9. **権限制御の境界で混乱したら**: `comparisons/iam-boundaries-scp-condition-deep-dive.md` でPermission Boundary、SCP、Session Policy、Resource-based Policy、Conditionを整理する
+10. **DB接続で詰まったら**: `comparisons/rds-aurora-connection-deep-dive.md` でendpoint、read offload、RDS Proxy、分析分離を確認する
+11. **AWS外の前提語で詰まったら**: `glossary/web-runtime.md` と `glossary/pool-terms.md` に戻る
+
+## 🧭 説明を読むフレーム
+
+個別サービスの説明は、次へ展開する。
+
+```text
+誰が
+  → 何を
+  → どこへ
+  → いつ
+  → どうやって
+  → なぜ
+  → どんな代償で
+```
+
+さらに、通信経路、データの正本、状態の保持者、障害時の動作、運用責任、比較対象を確認する。
 
 ## 🧭 SAPで使う判断フレーム
 
@@ -62,6 +89,7 @@ SAP-C02合格と、実務で「なぜその設計なのか」を説明できる�
 
 ## 📊 現在の進捗
 
+- AWS解説文の前提・動詞・因果関係を展開する `EXPLANATION_OF_EXPLANATIONS.md` を追加
 - SAP-C02向けの通読本編 `SAP_DESIGN_READER.md` を追加
 - 基本構造完成
 - IAM / KMS / Cognito / Secrets Manager / ACM / WAF / Shield / Network Firewall などセキュリティ重要論点を追加
