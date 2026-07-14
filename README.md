@@ -1,75 +1,140 @@
-# AWS Mastering Repository
+# AWS Mastering
 
-**AWS SAP-C02に必要なサービス選定力を体系的・実践的に鍛えるマスタリングノートブック**
+**AWSを、サービス名の暗記ではなく「流れ・状態・責任・障害・判断」で理解するための学習リポジトリ。**
 
-SAP-C02合格と、実務で「なぜその設計なのか」を説明できるアーキテクト力の獲得を目指す。
+SAP-C02対策と、実務で「なぜこの設計なのか」を説明できる力の両方を扱う。
 
-## 📖 最初に読む
+---
 
-AWSの説明文に出てくる `endpoint`、`proxy`、`replication`、`stateful`、`managed`、`failover` などの前提語が曖昧な場合は、最初に **[AWS「説明の説明」](EXPLANATION_OF_EXPLANATIONS.md)** を読む。
+# ここから始める
 
-その後、**[AWS SAP設計読本](SAP_DESIGN_READER.md)** を最初から読み、**[SAP-C02カバレッジマトリクス](SAP_C02_COVERAGE_MATRIX.md)** で公式20タスクとリポジトリの対応状況を確認する。
+## 初めて来た人
 
-### 主要読本の役割
+👉 **[START_HERE.md](START_HERE.md)**
 
-| 読本 | 身につけること |
+今の理解度と目的から、読む場所を選べる。
+
+## システムを順番に理解したい人
+
+👉 **[人間向けAWS設計ガイド](guide/README.md)**
+
+```text
+Requestの流れ
+  → 設計判断
+  → 障害と回復
+  → 運用と変更
+  → 移行
+  → SAP長文
+```
+
+## 特定のテーマで迷っている人
+
+👉 **[AWS意思決定マップ](guide/QUICK_DECISION_MAP.md)**
+
+入口、Compute、非同期連携、Database、Storage、Network、Identity、DR、Migrationを短時間で比較できる。
+
+---
+
+# このリポジトリの全体像
+
+```mermaid
+flowchart TD
+    S[START_HERE<br/>目的を決める]
+    G[Human Guide<br/>流れを理解する]
+    R[Readers / Comparisons<br/>設計判断を深める]
+    D[Service Dictionary<br/>詳細を調べる]
+    P[Patterns / Diagrams<br/>構成を再現する]
+    Q[Practice<br/>問題を解く]
+    C[Coverage Matrix<br/>弱点を戻す]
+
+    S --> G
+    G --> R
+    R --> D
+    R --> P
+    D --> Q
+    P --> Q
+    Q --> C
+    C --> G
+```
+
+情報は、最初から全部読むために並べていない。
+
+**理解する → 描く → 比較する → 解く → 弱点へ戻る**、の循環で使う。
+
+---
+
+# 人間向け設計ガイド
+
+| 章 | 読者の問い |
 |---|---|
-| [AWS「説明の説明」](EXPLANATION_OF_EXPLANATIONS.md) | AWS解説文を「誰が・何を・どこへ・なぜ・どの条件で」へ分解する力 |
-| [AWS SAP設計読本](SAP_DESIGN_READER.md) | 要件、制約、候補、比較、不採用理由から設計を選ぶ力 |
-| [SAP-C02カバレッジマトリクス](SAP_C02_COVERAGE_MATRIX.md) | 公式4ドメイン・20タスクの整備状況と次の弱点 |
-| [Performance Design Reader](PERFORMANCE_DESIGN_READER.md) | 症状、Metric、Bottleneck、改善、検証をつなぐ力 |
-| [Continuous Improvement Playbook](CONTINUOUS_IMPROVEMENT_PLAYBOOK.md) | 既存環境を観測し、改善を反復する力 |
-| [Migration and Modernization Reader](MIGRATION_AND_MODERNIZATION_READER.md) | Portfolio評価、7R、Wave、Cutover、Modernizationを設計する力 |
+| [第1章: RequestからDataまで](guide/01-request-to-data.md) | クリックした後、何が起きるのか |
+| [第2章: 設計判断](guide/02-design-decisions.md) | なぜそのサービスを選ぶのか |
+| [第3章: 障害と回復](guide/03-failure-recovery.md) | どこが壊れ、どう戻るのか |
+| [第4章: 運用と変更](guide/04-operation-change.md) | どう観測し、安全に変更するのか |
+| [第5章: 移行とModernization](guide/05-migration-modernization.md) | 既存環境をどう動かすのか |
+| [第6章: SAP長文](guide/06-sap-exam.md) | 長い問題文をどう解くのか |
+| [図解アトラス](guide/DIAGRAM_ATLAS.md) | 構成をどう描くのか |
 
-## 🎯 戦略（Tiered Approach）
+---
 
-- **Tier 1（最重要サービス）**: 詳細解説、豊富なユースケース、対比、Well-Architected紐付け
-- **Tier 2**: 標準テンプレート（概要、ユースケース、接続、判断基準）
-- **Tier 3**: コンパクトな参照用ページ
+# 長文読本
 
-サービス数ではなく、公式Taskごとに**説明・比較・演習が揃っているか**で完成度を判断する。
+短いガイドで全体をつかんだ後、必要なテーマだけ深掘りする。
 
-## 📁 フォルダ構成
+| 読本 | 主題 |
+|---|---|
+| [AWS「説明の説明」](EXPLANATION_OF_EXPLANATIONS.md) | `proxy`、`endpoint`、`replication`などを具体的動作へ展開する |
+| [AWS SAP設計読本](SAP_DESIGN_READER.md) | 要件、制約、候補、比較、不採用理由から設計を選ぶ |
+| [Performance Design Reader](PERFORMANCE_DESIGN_READER.md) | 症状からBottleneckを特定し改善する |
+| [Continuous Improvement Playbook](CONTINUOUS_IMPROVEMENT_PLAYBOOK.md) | 観測、変更、検証、標準化を反復する |
+| [Migration and Modernization Reader](MIGRATION_AND_MODERNIZATION_READER.md) | Portfolio、7R、Wave、Cutover、Modernization |
 
-- `EXPLANATION_OF_EXPLANATIONS.md` - AWSの説明文を読み解くための基礎読本
-- `SAP_DESIGN_READER.md` - SAP設計判断を通読で学ぶ本編
-- `SAP_C02_COVERAGE_MATRIX.md` - 公式20タスクと教材の対応表
-- `PERFORMANCE_DESIGN_READER.md` - 性能設計とBottleneck分析
-- `CONTINUOUS_IMPROVEMENT_PLAYBOOK.md` - 既存環境の改善サイクル
-- `MIGRATION_AND_MODERNIZATION_READER.md` - 移行ProgramとModernization
-- `services/` - 各AWSサービス詳細
-- `comparisons/` - サービス対比表・混同しやすい概念の深掘り
-  - `deployment-and-rollback-strategies.md`
-  - `hybrid-dns-deep-dive.md`
-  - `cost-modeling-and-data-transfer.md`
-- `patterns/` - 実践アーキテクチャパターン
-- `architecture-diagrams/` - SAP-C02頻出構成図
-- `architecture/` - 横断的なアーキテクチャ解説
-- `sap-c02/` - 試験ドメイン別の論点整理
-- `glossary/` - ネットワーク、Web、認証、DRなど周辺用語
-- `well-architected/` - Well-Architected柱別ノート
-- `practice/` - SAP-C02長文シナリオ型問題集
-- `LEARNING_PATH.md` - 体系的学習ロードマップ
-- `SERVICES_INDEX.md` - 全サービス一覧とTier分類
+公式試験範囲との対応は **[SAP-C02カバレッジマトリクス](SAP_C02_COVERAGE_MATRIX.md)** で確認する。
 
-## 🚀 使い方
+---
 
-1. **説明を分解する**: [AWS「説明の説明」](EXPLANATION_OF_EXPLANATIONS.md)
-2. **設計を通読する**: [AWS SAP設計読本](SAP_DESIGN_READER.md)
-3. **公式範囲と照合する**: [SAP-C02カバレッジマトリクス](SAP_C02_COVERAGE_MATRIX.md)
-4. **横断テーマを深める**:
-   - [Deployment and Rollback](comparisons/deployment-and-rollback-strategies.md)
-   - [Hybrid DNS](comparisons/hybrid-dns-deep-dive.md)
-   - [Performance Design](PERFORMANCE_DESIGN_READER.md)
-   - [Cost Modeling and Data Transfer](comparisons/cost-modeling-and-data-transfer.md)
-   - [Continuous Improvement](CONTINUOUS_IMPROVEMENT_PLAYBOOK.md)
-   - [Migration and Modernization](MIGRATION_AND_MODERNIZATION_READER.md)
-5. **体系的に深める**: [LEARNING_PATH.md](LEARNING_PATH.md)
-6. **辞書的に調べる**: [SERVICES_INDEX.md](SERVICES_INDEX.md)
-7. **設計力を鍛える**: `architecture-diagrams/`、`patterns/`、`comparisons/`
-8. **試験対策する**: `sap-c02/` と `practice/`
+# 比較と深掘り
 
-## 🧭 説明を読むフレーム
+`comparisons/`は、似たサービスを同じ比較軸で判断する場所である。
+
+- [Deployment and Rollback](comparisons/deployment-and-rollback-strategies.md)
+- [Hybrid DNS](comparisons/hybrid-dns-deep-dive.md)
+- [Cost Modeling and Data Transfer](comparisons/cost-modeling-and-data-transfer.md)
+- [Messaging and Eventing](comparisons/messaging-eventing-comparison.md)
+- [Storage](comparisons/storage-comparison.md)
+- [Edge Security](comparisons/edge-security-comparison.md)
+- [Networking Foundations](comparisons/networking-foundations-deep-dive.md)
+- [IAM Boundaries / SCP / Condition](comparisons/iam-boundaries-scp-condition-deep-dive.md)
+- [RDS / Aurora Connection](comparisons/rds-aurora-connection-deep-dive.md)
+
+---
+
+# 辞書・構成・演習
+
+## サービスを調べる
+
+- [SERVICES_INDEX.md](SERVICES_INDEX.md)
+- `services/`
+- `glossary/`
+
+## 構成を学ぶ
+
+- `patterns/`
+- `architecture/`
+- `architecture-diagrams/`
+- [図解アトラス](guide/DIAGRAM_ATLAS.md)
+
+## 問題を解く
+
+- `practice/`
+- `sap-c02/`
+- [SAP長文の読み方](guide/06-sap-exam.md)
+
+---
+
+# 二つの思考フレーム
+
+## 説明を読む
 
 ```text
 誰が
@@ -81,53 +146,85 @@ AWSの説明文に出てくる `endpoint`、`proxy`、`replication`、`stateful`
   → どんな代償で
 ```
 
-さらに、通信経路、データの正本、状態の保持者、障害時の動作、運用責任、比較対象を確認する。
+さらに確認する。
 
-## 🧭 SAPで使う判断フレーム
+- 通信経路
+- Dataの正本
+- Stateの保持者
+- 障害時の動作
+- 運用責任
+- 比較対象
+
+## 設計を選ぶ
 
 ```text
-目的 → 前提 → 制約 → 候補 → 比較 → 決定 → 不採用理由
+目的
+  → 前提
+  → 制約
+  → 候補
+  → 比較
+  → 決定
+  → 不採用理由
 ```
 
-特に「最小コスト」「最小の運用負荷」「停止時間を最小化」「データ損失不可」などの強い制約語を先に見つける。サービス名を見つけて飛びつくのではなく、制約を満たさない選択肢から落とす。
+サービス名を見つけて飛びつかず、強い制約を満たさない案から落とす。
 
-## 🧭 既存環境を改善するフレーム
+---
+
+# 図の原則
+
+図は装飾ではなく、関係を外に出すために使う。
+
+図が必要な場面：
+
+- 3主体以上
+- 時間順序
+- 分岐
+- Account / VPC / AZ / Region境界
+- 正本とReplica
+- Failover / Cutover
+
+矢印には必ず意味を書く。
 
 ```text
-Observe
-  → Define
-  → Diagnose
-  → Prioritize
-  → Change
-  → Verify
-  → Standardize
+HTTPS request
+message
+business event
+SQL read/write
+replication
+AssumeRole
+metrics / logs
 ```
 
-新しいServiceを追加したことではなく、SLO、Business KPI、Cost、復旧時間が改善したことを成果とする。
+詳しくは[図解アトラス](guide/DIAGRAM_ATLAS.md)を参照する。
 
-## 📊 現在の進捗
+---
 
-- AWS解説文の前提・動詞・因果関係を展開する `EXPLANATION_OF_EXPLANATIONS.md`
-- SAP-C02向けの通読本編 `SAP_DESIGN_READER.md`
-- 公式4ドメイン・20タスクを対応付ける `SAP_C02_COVERAGE_MATRIX.md`
-- Deployment / Rollback、Hybrid DNS、Cost / Data Transferの横断比較
-- Performance、Continuous Improvement、Migration / Modernizationの専門読本
-- IAM / KMS / Cognito / Secrets Manager / ACM / WAF / Shield / Network FirewallなどのSecurity重要論点
-- Direct Connect / VPN / PrivateLink / Global Accelerator / ELBなどHybrid・Global接続
-- EFS / FSx / Storage Gateway / AWS BackupなどStorage選定
-- Migration & Transferサービスページ
-- Messaging/Eventing、Storage、Edge Security、Governance、Cost、Analytics比較
-- CloudFormation / CloudTrail / Config / Security Hubによる監査・統制
-- Cost Explorer / Budgets / Savings Plans / Reserved Instances / Compute Optimizer
-- Athena / Glue / QuickSight / DataZone
-- Domain横断の長文Scenarioと読解フレーム
+# 教材を追加・編集する人へ
 
-## 次の拡張候補
+👉 **[EDITORIAL_GUIDE.md](EDITORIAL_GUIDE.md)**
 
-- Practice: 65問以上の本番形式模試を公式Domain比率へ整合
-- Multi-account operating model: AWS RAM、Delegated Administrator、組織通知
-- Developer Tools: CodePipeline / CodeBuild / CodeDeploy / CDK / SAMの個別ページ
-- Calculation exercises: Kinesis shard、DynamoDB partition、EBS帯域、Data transfer
-- Purpose-built database比較
-- Hybrid/Edge: Outposts / Local Zones / Wavelength
-- Final Review: 弱点診断表、頻出誤答パターン集
+新しいページは、原則として次の順で構成する。
+
+```text
+30秒要約
+  → 最初の一枚
+  → 仕組み
+  → 選ぶ条件
+  → 選ばない条件
+  → 障害時
+  → 詳細
+  → 確認問題
+```
+
+詳細を増やす前に、読者が中心概念を持ち帰れる順序になっているか確認する。
+
+---
+
+# 学習の完了条件
+
+ページを読み終えたことではなく、次を説明できること。
+
+> この要件ではAを選ぶ。Bも技術的には可能だが、状態の置き場所、障害時の動作、運用責任、コスト、または移行制約が合わないため選ばない。
+
+体系的な順序は **[LEARNING_PATH.md](LEARNING_PATH.md)** を使う。
