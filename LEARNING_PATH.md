@@ -1,343 +1,358 @@
 # AWS Mastering Learning Path
 
-## SAP-C02向け推奨学習順序
+この学習順序は、サービス数を消化するためのものではない。
 
-このリポジトリは、サービスページを順番に暗記するよりも、説明文の読み方、設計判断、公式Taskとの対応、横断テーマ、個別サービス、演習の順で進む使い方を推奨する。
+**読む → 描く → 比較する → 説明する → 解く → 弱点へ戻る**、を繰り返す。
 
-```text
-説明を読む
-  → 設計を選ぶ
-  → 公式Taskと照合する
-  → 横断テーマを深める
-  → 個別Serviceへ戻る
-  → 問題を解く
-  → 弱点を更新する
+```mermaid
+flowchart LR
+    R[読む]
+    D[描く]
+    C[比較する]
+    E[説明する]
+    Q[解く]
+    W[弱点へ戻る]
+
+    R --> D --> C --> E --> Q --> W --> R
 ```
 
 ---
 
-# Phase -1: AWSの説明を分解できるようにする
+# Phase 0 — 入口を決める
 
-最初に [AWS「説明の説明」](EXPLANATION_OF_EXPLANATIONS.md) を読む。
+最初に [START_HERE.md](START_HERE.md) を読む。
 
-AWSの説明文には、`route`、`proxy`、`endpoint`、`replication`、`cache`、`stateful`、`managed`、`failover` など、一般IT用語が圧縮されている。次の形へ展開できる状態を作る。
+今の状態を選ぶ。
 
-```text
-誰が
-  → 何を
-  → どこへ
-  → いつ
-  → どうやって
-  → なぜ
-  → どんな代償で
-```
+- AWS用語そのものが曖昧
+- システム全体の流れが見えない
+- サービス比較で迷う
+- SAP問題で制約を拾えない
+- 特定Taskだけ弱い
 
-## Phase -1の完了条件
+## 完了条件
 
-- 「前段」「後段」が何を基準にした位置関係か説明できる
-- client/serverとproducer/consumerを分けられる
-- route、forward、proxy、replicate、cache、bufferの違いを説明できる
-- public/private、sync/async、stateless/statefulを二択暗記せず説明できる
-- availability、replica、backup、DRを分けられる
-- latency、throughput、IOPS、concurrencyを分けられる
-- authentication、authorization、credential、roleを分けられる
-- retryが起きる構成でidempotencyが必要な理由を説明できる
+次に読む一冊または一章を一つだけ選べる。
 
 ---
 
-# Phase 0: 通読して設計の型を作る
+# Phase 1 — システムの流れを理解する
 
-次に [AWS SAP設計読本](SAP_DESIGN_READER.md) を読む。
+読む：
 
-読了時の目標:
+1. [第1章: RequestからDataまで](guide/01-request-to-data.md)
+2. [図解アトラス](guide/DIAGRAM_ATLAS.md)
 
-> この要件ではAを選ぶ。Bでも実現可能だが、運用負荷・RTO・コストの制約に合わないため採用しない。
+## 作る成果物
 
-## 通読メモ
+次の図を自分で描く。
+
+```text
+User
+  → DNS / Edge
+  → Entry
+  → Compute
+  → Integration
+  → State
+```
+
+矢印へ次のどれかを書く。
+
+- HTTPS request
+- message
+- event
+- SQL read/write
+- replication
+- AssumeRole
+
+## 完了条件
+
+- Route 53の回答と実通信を分けられる
+- Edge、Entry、Computeを分けられる
+- 同期と非同期を分けられる
+- Source of truth、Cache、Replica、Backupを指せる
+- EventBridge、SQS、Step Functionsの役割を分けられる
+
+---
+
+# Phase 2 — 設計判断の型を作る
+
+読む：
+
+1. [第2章: 要件から設計を選ぶ](guide/02-design-decisions.md)
+2. [AWS意思決定マップ](guide/QUICK_DECISION_MAP.md)
+3. [AWS SAP設計読本](SAP_DESIGN_READER.md)
+
+## 作る成果物
+
+一つの設計についてDecision recordを書く。
 
 ```text
 目的:
 前提:
-制約:
+Must:
+Preference:
 候補:
 採用:
+採用理由:
 不採用理由:
-```
-
-説明そのものが理解できない場合:
-
-```text
-主体:
-入力:
-処理:
-出力 / 状態変化:
-通信経路:
-データの正本:
 障害時:
-代償:
-```
-
----
-
-# Phase 0.5: 公式20タスクと照合する
-
-[SAP-C02カバレッジマトリクス](SAP_C02_COVERAGE_MATRIX.md) を読み、Domain 1〜4のどこが弱いかを把握する。
-
-## 記録する
-
-```text
-Task:
-現在の理解:
-読んだ資料:
-説明できない点:
-落とした問題:
-次に読む資料:
-```
-
-ページ数ではなく、Taskごとに次を判定する。
-
-- 説明できるか
-- 比較できるか
-- 構成図を描けるか
-- 誤答理由を言えるか
-- Scenario問題を解けるか
-
----
-
-# Phase 1: 基盤固め（Tier 1）
-
-1. **IAM、Organizations、KMS、Well-Architected Framework**
-2. **VPC、Route 53、CloudFront、Direct Connect、PrivateLink、Transit Gateway**
-3. **EC2、Auto Scaling、ELB、EBS**
-4. **S3、EFS、FSx、Storage Gateway、AWS Backup**
-5. **RDS、Aurora、DynamoDB、ElastiCache**
-
-## 各Serviceで残すメモ
-
-```text
-解決する問題:
-入力 / 出力:
-Control plane:
-Data plane:
-何と比較するか:
-選ぶ制約語:
-選ばない条件:
-障害時:
+残る運用責任:
 Cost driver:
 ```
 
----
+## 完了条件
 
-# Phase 2: 横断テーマを専門読本で固める
-
-## 2.1 DeploymentとRollback
-
-[Deployment and Rollback Strategies](comparisons/deployment-and-rollback-strategies.md)
-
-説明できる状態:
-
-- All-at-once、Rolling、Immutable、Blue/Green、Canary、Linearの違い
-- Traffic rollbackとArtifact rollbackの違い
-- Database変更で旧版互換が必要な理由
-- Health checkとBusiness validationの違い
-- IaC、Pipeline、Configuration managementの責任分担
-
-## 2.2 Hybrid DNS
-
-[Hybrid DNS Deep Dive](comparisons/hybrid-dns-deep-dive.md)
-
-説明できる状態:
-
-- Inbound EndpointとOutbound EndpointのQuery方向
-- Private Hosted ZoneとNetwork connectivityの違い
-- Conditional Forwarding
-- DNS TTLとCutover
-- TGWを作ってもDNS統合が自動化されない理由
-- DNS Query成功後にIP到達性を別確認する理由
-
-## 2.3 Performance
-
-[Performance Design Reader](PERFORMANCE_DESIGN_READER.md)
-
-説明できる状態:
-
-- Latency、Throughput、IOPS、Bandwidth、Concurrency
-- CPUが低いのに遅い原因
-- Caching、Buffering、Replicaの目的差
-- EC2、EBS、DB、QueueのBottleneck分析
-- Auto Scaling指標をWork量へ合わせる方法
-- RightsizingをDownsizeだけで考えない理由
-
-## 2.4 CostとData Transfer
-
-[Cost Modeling and Data Transfer](comparisons/cost-modeling-and-data-transfer.md)
-
-説明できる状態:
-
-- NAT、AZ間、Region間、Internet transferの費用境界
-- Gateway EndpointとInterface Endpointの費用構造
-- Rightsizing後にCommitmentを買う理由
-- CURとCost Explorerの使い分け
-- Unit cost、Showback、Chargeback
-- Managed serviceのTCO
-
-## 2.5 Continuous Improvement
-
-[Continuous Improvement Playbook](CONTINUOUS_IMPROVEMENT_PLAYBOOK.md)
-
-説明できる状態:
-
-- Observe → Diagnose → Change → Verify
-- SLI、SLO、SLA、KPI
-- Metrics、Logs、Traces
-- Alarmから自動修復までの経路
-- Game DayとRestore test
-- 改善を標準化する方法
-
-## 2.6 Migration and Modernization
-
-[Migration and Modernization Reader](MIGRATION_AND_MODERNIZATION_READER.md)
-
-説明できる状態:
-
-- Portfolio、Workload、Executionの三層
-- 7Rs
-- Wave Planning
-- MGN、DMS、DataSync、Snow、Transfer Familyの役割
-- CutoverとRollback
-- Data divergence
-- Rehost後のModernization
+- 目的と手段を分けられる
+- MustとPreferenceを分けられる
+- 同じ比較軸で候補を比べられる
+- 「最小運用」「最小コスト」「高可用」を具体化できる
+- 採用理由と不採用理由を一文ずつ書ける
 
 ---
 
-# Phase 3: Serverless、Containers、Loose Coupling
+# Phase 3 — 障害と回復を理解する
 
-6. **Lambda、API Gateway、Step Functions**
-7. **ECS、EKS、Fargate**
-8. **EventBridge、SQS、SNS**
-9. **Cognito**
+読む：
 
-## 重点課題
+1. [第3章: 障害と回復](guide/03-failure-recovery.md)
+2. `architecture/` と `patterns/` のDR関連ページ
+3. [Continuous Improvement Playbook](CONTINUOUS_IMPROVEMENT_PLAYBOOK.md)のRecovery部分
 
-- EventBridgeからECS Taskを定刻起動するとき、API Gatewayが不要な理由
-- SQSとEventBridgeを、BufferとRoutingの役割で分ける
-- ECSとEKSを、Kubernetes要件と運用負荷から比較する
-- 「疎結合」を停止時・急増時・再試行時の動作へ展開する
-- SQS StandardでIdempotencyが必要な理由
-- Step FunctionsとEventBridgeの違い
+## 作る成果物
 
----
+Failure mode tableを一つ作る。
 
-# Phase 4: Migration、Analytics、Management
+| Failure | Detection | Automatic action | Manual action | Verification |
+|---|---|---|---|---|
+| 例: ECS Task停止 | Target health | Task replacement | 原因調査 | API canary |
 
-10. **MGN、DMS、Schema Conversion、DataSync、Migration Hub、Snow Family**
-11. **Athena、Glue、Redshift、QuickSight、Lake Formation、DataZone**
-12. **SageMaker、Bedrock、Rekognition**
-13. **CloudWatch、CloudTrail、Config、CloudFormation、Systems Manager、Security Hub**
+## 完了条件
 
-Serviceページを読むときは、Phase 2の横断読本へ戻ってProgram全体の中での位置を確認する。
+- HA、Backup、DRを分けられる
+- Multi-AZ、Read Replica、Backupの主目的を分けられる
+- RTO/RPOからDR戦略を選べる
+- Retry、Backoff、Jitter、Idempotencyを説明できる
+- Technical healthとBusiness healthを分けられる
 
 ---
 
-# Phase 5: 比較表で誤答を落とす
+# Phase 4 — 運用と変更を理解する
+
+読む：
+
+1. [第4章: 運用と変更](guide/04-operation-change.md)
+2. [Deployment and Rollback](comparisons/deployment-and-rollback-strategies.md)
+3. [Continuous Improvement Playbook](CONTINUOUS_IMPROVEMENT_PLAYBOOK.md)
+
+## 作る成果物
+
+次を一つずつ作る。
+
+- SLOと対応Metric
+- AlarmからActionまでの経路
+- Blue/GreenまたはCanaryの図
+- Runbookの最小版
+
+## 完了条件
+
+- Metrics、Logs、Tracesを分けられる
+- CloudTrailとConfigを分けられる
+- Blue/Green、Canary、Rollingを選べる
+- Traffic rollbackとDatabase rollbackを分けられる
+- AutomationへGuardrailが必要な理由を説明できる
+- 改善をService導入数ではなくSLO/KPI/Costで測れる
+
+---
+
+# Phase 5 — 移行を時間軸で理解する
+
+読む：
+
+1. [第5章: 移行とModernization](guide/05-migration-modernization.md)
+2. [Migration and Modernization Reader](MIGRATION_AND_MODERNIZATION_READER.md)
+3. `services/migration/`
+
+## 作る成果物
+
+一つのWorkloadについて次を書く。
+
+```text
+Dependencies:
+7R:
+Wave:
+Landing Zone prerequisites:
+Replication / Transfer:
+Test:
+Cutover:
+Rollback deadline:
+Hypercare exit:
+Modernization backlog:
+```
+
+## 完了条件
+
+- Portfolio、Workload、Componentを分けられる
+- 7Rを順位ではなく制約で選べる
+- MGN、DMS、DataSync、Snow Familyを対象で分けられる
+- Change rateを含めて移行時間を考えられる
+- Traffic rollbackとData divergenceを説明できる
+
+---
+
+# Phase 6 — 横断テーマを深める
+
+理解が浅いテーマだけ選ぶ。
+
+## Performance
+
+- [Performance Design Reader](PERFORMANCE_DESIGN_READER.md)
+- 症状 → Metric → Bottleneck → 改善 → 検証
+
+## Network / DNS
 
 - [Networking Foundations](comparisons/networking-foundations-deep-dive.md)
 - [Hybrid DNS](comparisons/hybrid-dns-deep-dive.md)
-- [RDS / Aurora Connection](comparisons/rds-aurora-connection-deep-dive.md)
+- 名前解決とReachabilityを分ける
+
+## Cost
+
+- [Cost Modeling and Data Transfer](comparisons/cost-modeling-and-data-transfer.md)
+- [Cost Optimization](comparisons/cost-optimization-comparison.md)
+- Visibility → Waste → Rightsize → Architecture → Commitment
+
+## Integration
+
+- [Messaging and Eventing](comparisons/messaging-eventing-comparison.md)
+- Queue、Router、Pub/Sub、Workflow、Streamを分ける
+
+## Identity / Security
+
 - [Access Control and Encryption](comparisons/access-control-and-encryption.md)
 - [IAM Boundaries / SCP / Condition](comparisons/iam-boundaries-scp-condition-deep-dive.md)
-- [Messaging and Eventing](comparisons/messaging-eventing-comparison.md)
-- [Storage Comparison](comparisons/storage-comparison.md)
-- [Deployment and Rollback](comparisons/deployment-and-rollback-strategies.md)
-- [Cost and Data Transfer](comparisons/cost-modeling-and-data-transfer.md)
-- [Web Runtime](glossary/web-runtime.md)
-- [Pool Terms](glossary/pool-terms.md)
+- Human、Workload、Application userを分ける
 
-## 比較表の読み方
+## Storage / Database
+
+- [Storage comparison](comparisons/storage-comparison.md)
+- [RDS / Aurora Connection](comparisons/rds-aurora-connection-deep-dive.md)
+- Object、Block、File、Transaction、Cacheを分ける
+
+## 完了条件
+
+選んだテーマを、図一枚とDecision rule一文で説明できる。
+
+---
+
+# Phase 7 — SAP-C02へ適用する
+
+読む：
+
+1. [第6章: SAP長文](guide/06-sap-exam.md)
+2. [SAP-C02カバレッジマトリクス](SAP_C02_COVERAGE_MATRIX.md)
+3. `practice/`
+4. `sap-c02/`
+
+## 一問ごとに残す
 
 ```text
-共通点:
-決定的な違い:
-選ぶ制約語:
-誤答になる条件:
-組み合わせる場合:
+最後の質問:
+Current:
+Goal:
+Must:
+Preference:
+対象レイヤー:
+Flow:
+Source of truth:
+採用理由:
+誤答理由:
+間違えた原因:
+戻る教材:
 ```
+
+## 誤答原因の分類
+
+- 用語
+- Flow
+- State
+- Service role
+- Constraint
+- Failure behavior
+- Cost / Operations
+- Migration timeline
+- 複数正解の組み合わせ
+
+## 完了条件
+
+- 強い制約語を拾える
+- 選択肢を失格条件で落とせる
+- 複数正解で必須構成を選べる
+- 正解と誤答の理由を同じ比較軸で説明できる
 
 ---
 
-# Phase 6: Scenario問題
+# Phase 8 — 公式Task単位で仕上げる
 
-1. [長文問題の読解フレーム](practice/exam-techniques.md)
-2. `practice/scenario-set-01〜04`
-3. Domain別問題
-4. 本番形式模試
+[SAP-C02カバレッジマトリクス](SAP_C02_COVERAGE_MATRIX.md)へ戻る。
 
-## 解答後に分類する
-
-- 知識不足
-- 用語の誤読
-- 制約語の見落とし
-- Serviceの役割混同
-- Cost / Performance / Reliabilityの優先順位誤り
-- 複数正解の選び過ぎ・不足
-- 変更前後のData flowを描けなかった
-
-## 誤答記録
+Taskごとに判定する。
 
 ```text
-Question:
-Selected:
-Correct:
-Missed constraint:
-Confused concepts:
-Why wrong:
-Return page:
-Re-test date:
+説明できる:
+比較できる:
+図を描ける:
+障害時を説明できる:
+誤答理由を言える:
+Scenarioを解ける:
 ```
 
----
-
-# Phase 7: 口頭説明と白紙設計
-
-次をService名の列挙ではなく、設計判断として説明する。
-
-- Shared VPCとTransit Gateway
-- VPC PeeringとPrivateLink
-- ALB、NLB、GWLB
-- CloudFront、Route 53、Global Accelerator
-- ECS、EKS、Lambda
-- RDS Multi-AZ、Read Replica、Aurora Global Database
-- SQS、SNS、EventBridge、Step Functions
-- Backup & Restore、Pilot Light、Warm Standby、Active/Active
-- MGN、DMS、DataSync、Snow Family
-- SCP、Permission Boundary、Resource Policy、Session Policy
-- Blue/Green、Canary、Rolling
-- Resolver Inbound、Outbound
-- Cache、Buffer、Replica
-- Savings Plans、Reserved Instances、Spot
-
-さらに各説明へ次を追加する。
-
-- 誰が動作主体か
-- 何が通信・複製・保存されるか
-- 状態はどこにあるか
-- 障害時に何が起きるか
-- 何ではないか
-- どんな代償があるか
+弱いTaskだけ、ガイド → 比較表 → サービス辞書 → 問題、の順に戻る。
 
 ---
 
-# Phase 8: 学習完了の判定
+# 学習時間別の使い方
 
-- AWSの短い説明を通信・Data・State・責任へ展開できる
-- 公式20Taskごとに対応資料と弱点を言える
-- 問題文から強い制約語を抜き出せる
-- 通信経路とData flowを描ける
-- 矢印がHTTP、Event、Message、Replication、DNS、Role assumptionのどれか説明できる
-- Correct answerだけでなく、Distractorが失格になる理由を説明できる
-- RTO/RPO、SLO、Performance、Migration downtime、Costを数値で比較できる
-- DeploymentのRollbackをData互換性まで説明できる
-- MigrationのCutover後Dataをどう扱うか説明できる
-- 改善前後を同じMetricで検証できる
+## 30分
 
-**Tips**: Service単体暗記ではなく、「誰が何をしているか」「どのConstraintで選ぶか」「何を失うか」「どう戻すか」を必ず言語化する。
+- START_HERE
+- 意思決定マップ
+- 弱いテーマの図一枚
+
+## 2時間
+
+- Guideの一章
+- Decision recordまたはFailure table作成
+- Scenarioを2〜3問
+
+## 1週間
+
+- Guide 6章を通読
+- 各章の成果物を一つずつ作成
+- Coverage matrixで弱点を3つ選ぶ
+
+## 4週間
+
+- Week 1: Flow / Decision
+- Week 2: Failure / Operations
+- Week 3: Migration / Cross-domain
+- Week 4: Practice / Weakness repair
+
+---
+
+# 最終判定
+
+学習完了とは、AWSサービス名を多く言えることではない。
+
+次を何も見ずに説明できること。
+
+```text
+利用者のRequestがどこを通るか。
+Stateの正本がどこにあるか。
+どこが壊れ得るか。
+どう検知し、切り替え、戻すか。
+どの制約でサービスを選ぶか。
+なぜ他の選択肢ではないか。
+変更と移行をどう安全に行うか。
+```
+
+教材を編集する場合は [EDITORIAL_GUIDE.md](EDITORIAL_GUIDE.md) に従う。
